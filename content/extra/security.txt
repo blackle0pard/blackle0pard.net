@@ -1,0 +1,3 @@
+Contact: security@blackle0pard.com
+Expires: Sun, 1 May 2022 00:00 +0900
+Preferred-Languages: ja
