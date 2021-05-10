@@ -1,4 +1,4 @@
-Title: Abbout
+Title: About
 Status: hidden
 Save_as: about.html
 
