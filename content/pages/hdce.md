@@ -1,6 +1,6 @@
 Title: Honeypot Data / Cowrie
 Status: hidden
-Save_as: hd_cowrie.html
+Save_as: hdce.html
 
 [GitHub - cowrie/cowrie: Cowrie SSH/Telnet Honeypot https://cowrie.readthedocs.io](https://github.com/cowrie/cowrie)  
 
