@@ -1,5 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-05-15T12:45:00+09:00</updated><entry><title>【自分用】ArchLinuxのインストール手順</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-05-20T22:15:00+09:00</updated><entry><title>macOSにGrafanaをインストールする</title><link href="https://blackle0pard.net/g35ngh/" rel="alternate"></link><published>2021-05-20T22:15:00+09:00</published><updated>2021-05-20T22:15:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-20:/g35ngh/</id><summary type="html">&lt;p&gt;最近、macOSを使い始めたのですが操作に不慣れなので、備忘録として。  &lt;/p&gt;
+&lt;h1&gt;Grafanaのインストール&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;公式の手順にある通り、Homebrewでインストール出来ます。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://grafana.com/docs/grafana/latest/installation/mac/"&gt;Install on macOS | Grafana Labs&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://formulae.brew.sh/formula/grafana"&gt;grafana — Homebrew Formulae&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew install grafana&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;インストールしたGrafanaのバージョンを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% /opt/homebrew/bin/grafana-cli --version&lt;/span&gt;
+&lt;span class="n"&gt;Grafana&lt;/span&gt; &lt;span class="s"&gt;CLI&lt;/span&gt; &lt;span class="s"&gt;version&lt;/span&gt; &lt;span class="s"&gt;7.5.6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;サービスの起動状態を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew services list          &lt;/span&gt;
+&lt;span class="n"&gt;Name&lt;/span&gt;    &lt;span class="s"&gt;Status&lt;/span&gt;  &lt;span class="s"&gt;User&lt;/span&gt; &lt;span class="s"&gt;Plist&lt;/span&gt;
+&lt;span class="n"&gt;grafana&lt;/span&gt; &lt;span class="s"&gt;stopped&lt;/span&gt;      
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafanaのサービスを起動します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;services&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;grafana&lt;/span&gt; 
+&lt;span class="o"&gt;==&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Successfully&lt;/span&gt; &lt;span class="n"&gt;ran&lt;/span&gt; &lt;span class="ss"&gt;`grafana`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mxcl …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;最近、macOSを使い始めたのですが操作に不慣れなので、備忘録として。  &lt;/p&gt;
+&lt;h1&gt;Grafanaのインストール&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;公式の手順にある通り、Homebrewでインストール出来ます。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://grafana.com/docs/grafana/latest/installation/mac/"&gt;Install on macOS | Grafana Labs&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://formulae.brew.sh/formula/grafana"&gt;grafana — Homebrew Formulae&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew install grafana&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;インストールしたGrafanaのバージョンを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% /opt/homebrew/bin/grafana-cli --version&lt;/span&gt;
+&lt;span class="n"&gt;Grafana&lt;/span&gt; &lt;span class="s"&gt;CLI&lt;/span&gt; &lt;span class="s"&gt;version&lt;/span&gt; &lt;span class="s"&gt;7.5.6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;サービスの起動状態を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew services list          &lt;/span&gt;
+&lt;span class="n"&gt;Name&lt;/span&gt;    &lt;span class="s"&gt;Status&lt;/span&gt;  &lt;span class="s"&gt;User&lt;/span&gt; &lt;span class="s"&gt;Plist&lt;/span&gt;
+&lt;span class="n"&gt;grafana&lt;/span&gt; &lt;span class="s"&gt;stopped&lt;/span&gt;      
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafanaのサービスを起動します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;services&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;grafana&lt;/span&gt; 
+&lt;span class="o"&gt;==&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Successfully&lt;/span&gt; &lt;span class="n"&gt;ran&lt;/span&gt; &lt;span class="ss"&gt;`grafana`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mxcl&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafanaのサービスが起動したことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew services list         &lt;/span&gt;
+&lt;span class="n"&gt;Name&lt;/span&gt;    &lt;span class="s"&gt;Status&lt;/span&gt;  &lt;span class="s"&gt;User&lt;/span&gt;         &lt;span class="s"&gt;Plist&lt;/span&gt;
+&lt;span class="n"&gt;grafana&lt;/span&gt; &lt;span class="s"&gt;started&lt;/span&gt; &lt;span class="s"&gt;&amp;lt;User&amp;gt;&lt;/span&gt; &lt;span class="s"&gt;/opt/homebrew/opt/grafana/homebrew.mxcl.grafana.plist&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Webブラウザで&lt;code&gt;http://localhost:3000/&lt;/code&gt;に接続して、&lt;code&gt;admin/admin&lt;/code&gt; でログインします。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://grafana.com/docs/grafana/latest/getting-started/getting-started/"&gt;With Grafana | Grafana Labs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;プラグインのインストール&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;JSONのプラグインをインストールしてみます。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://grafana.com/grafana/plugins/simpod-json-datasource/"&gt;JSON plugin for Grafana | Grafana Labs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% sudo grafana-cli plugins install simpod-json-datasource&lt;/span&gt;
+&lt;span class="n"&gt;Password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;installing&lt;/span&gt; &lt;span class="s"&gt;simpod-json-datasource&lt;/span&gt; &lt;span class="s"&gt;@&lt;/span&gt; &lt;span class="s"&gt;0.2.4&lt;/span&gt;
+&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;simpod&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;datasource&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;versions&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;
+&lt;span class="n"&gt;into&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;
+
+✔ &lt;span class="n"&gt;Installed&lt;/span&gt; &lt;span class="n"&gt;simpod&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;datasource&lt;/span&gt; &lt;span class="n"&gt;successfully&lt;/span&gt; 
+
+&lt;span class="n"&gt;Restart&lt;/span&gt; &lt;span class="s"&gt;grafana&lt;/span&gt; &lt;span class="s"&gt;after&lt;/span&gt; &lt;span class="s"&gt;installing&lt;/span&gt; &lt;span class="s"&gt;plugins&lt;/span&gt; &lt;span class="s"&gt;.&lt;/span&gt; &lt;span class="s"&gt;&amp;lt;service&lt;/span&gt; &lt;span class="s"&gt;grafana-server&lt;/span&gt; &lt;span class="s"&gt;restart&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;プラグインがインストールされていることを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% grafana-cli plugins ls&lt;/span&gt;
+&lt;span class="n"&gt;installed&lt;/span&gt; &lt;span class="s"&gt;plugins:&lt;/span&gt;
+&lt;span class="n"&gt;simpod&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;datasource&lt;/span&gt; &lt;span class="p"&gt;@&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+
+&lt;span class="n"&gt;Restart&lt;/span&gt; &lt;span class="s"&gt;grafana&lt;/span&gt; &lt;span class="s"&gt;after&lt;/span&gt; &lt;span class="s"&gt;installing&lt;/span&gt; &lt;span class="s"&gt;plugins&lt;/span&gt; &lt;span class="s"&gt;.&lt;/span&gt; &lt;span class="s"&gt;&amp;lt;service&lt;/span&gt; &lt;span class="s"&gt;grafana-server&lt;/span&gt; &lt;span class="s"&gt;restart&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; &lt;span class="c"&gt;% ls /usr/local/var/lib/grafana/plugins&lt;/span&gt;
+&lt;span class="n"&gt;simpod&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;datasource&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;サービスを再起動してプラグインを有効化するのですが、デフォルトのプラグインのPATHとプラグインがインストールされているPATHが異なるので、&lt;code&gt;grafana.ini&lt;/code&gt;ファイルを修正します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% vim /opt/homebrew/etc/grafana/grafana.ini&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% diff /opt/homebrew/etc/grafana/grafana.ini /opt/homebrew/etc/grafana/grafana.ini.example &lt;/span&gt;
+24&lt;span class="n"&gt;c24&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;plugins&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafanaのサービスを再起動します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;services&lt;/span&gt; &lt;span class="n"&gt;stop&lt;/span&gt; &lt;span class="n"&gt;grafana&lt;/span&gt;
+&lt;span class="n"&gt;Stopping&lt;/span&gt; &lt;span class="ss"&gt;`grafana`&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;might&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;brew&lt;/span&gt; &lt;span class="n"&gt;services&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;grafana&lt;/span&gt;    
+&lt;span class="o"&gt;==&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Successfully&lt;/span&gt; &lt;span class="n"&gt;ran&lt;/span&gt; &lt;span class="ss"&gt;`grafana`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mxcl&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafanaにログインして、プラグインの一覧にJSONが表示されていれインストールは完了です。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;環境&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% sw_vers&lt;/span&gt;
+&lt;span class="n"&gt;ProductName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;    &lt;span class="n"&gt;macOS&lt;/span&gt;
+&lt;span class="n"&gt;ProductVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;11.3&lt;/span&gt;
+&lt;span class="n"&gt;BuildVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="mf"&gt;20E232&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% uname -smrv&lt;/span&gt;
+&lt;span class="n"&gt;Darwin&lt;/span&gt; &lt;span class="s"&gt;20.4.0&lt;/span&gt; &lt;span class="s"&gt;Darwin&lt;/span&gt; &lt;span class="s"&gt;Kernel&lt;/span&gt; &lt;span class="s"&gt;Version&lt;/span&gt; &lt;span class="s"&gt;20.4.0:&lt;/span&gt; &lt;span class="s"&gt;Fri&lt;/span&gt; &lt;span class="s"&gt;Mar&lt;/span&gt;  &lt;span class="s"&gt;5&lt;/span&gt; &lt;span class="s"&gt;01:14:02&lt;/span&gt; &lt;span class="s"&gt;PST&lt;/span&gt; &lt;span class="s"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xnu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;7195.101&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RELEASE_ARM64_T8101&lt;/span&gt; &lt;span class="n"&gt;arm64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew --version&lt;/span&gt;
+&lt;span class="n"&gt;Homebrew&lt;/span&gt; &lt;span class="s"&gt;3.1.8&lt;/span&gt;
+&lt;span class="n"&gt;Homebrew&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;revision&lt;/span&gt; &lt;span class="n"&gt;bb253be1f4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="s"&gt;commit&lt;/span&gt; &lt;span class="s"&gt;2021-05-20)&lt;/span&gt;
+&lt;span class="n"&gt;Homebrew&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cask&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;revision&lt;/span&gt; 7&lt;span class="n"&gt;ab1876ed3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="s"&gt;commit&lt;/span&gt; &lt;span class="s"&gt;2021-05-20)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Tech"></category><category term="macOS"></category><category term="Grafana"></category></entry><entry><title>【自分用】ArchLinuxのインストール手順</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
 &lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;

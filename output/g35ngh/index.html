@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>macOSにGrafanaをインストールする - くろひょうのぶろぐ</title>
+  <meta name="author" content="blackle0pard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css">
+  <link rel="stylesheet" type="text/css" href="https://blackle0pard.net/theme/css/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="header">
+      <h2 class="title"><a href="https://blackle0pard.net/">くろひょうのぶろぐ</a></h2>
+    </section>
+
+<div class="article-title">macOSにGrafanaをインストールする</div>
+<div class="article-published" datetime="2021-05-20T22:15:00+09:00"><span class="mgl-10">2021-05-20 22:15</span>
+</div>
+<div class="article">
+  <p>最近、macOSを使い始めたのですが操作に不慣れなので、備忘録として。  </p>
+<h1>Grafanaのインストール</h1>
+<ul>
+<li>公式の手順にある通り、Homebrewでインストール出来ます。  <ul>
+<li><a href="https://grafana.com/docs/grafana/latest/installation/mac/">Install on macOS | Grafana Labs</a>  </li>
+<li><a href="https://formulae.brew.sh/formula/grafana">grafana — Homebrew Formulae</a>  </li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% brew install grafana</span>
+</code></pre></div>
+
+<ul>
+<li>インストールしたGrafanaのバージョンを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% /opt/homebrew/bin/grafana-cli --version</span>
+<span class="n">Grafana</span> <span class="s">CLI</span> <span class="s">version</span> <span class="s">7.5.6</span>
+</code></pre></div>
+
+<ul>
+<li>サービスの起動状態を確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% brew services list          </span>
+<span class="n">Name</span>    <span class="s">Status</span>  <span class="s">User</span> <span class="s">Plist</span>
+<span class="n">grafana</span> <span class="s">stopped</span>      
+</code></pre></div>
+
+<ul>
+<li>Grafanaのサービスを起動します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code> <span class="o">%</span> <span class="n">brew</span> <span class="n">services</span> <span class="n">run</span> <span class="n">grafana</span> 
+<span class="o">==&gt;</span> <span class="n">Successfully</span> <span class="n">ran</span> <span class="ss">`grafana`</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="n">homebrew</span><span class="p">.</span><span class="n">mxcl</span><span class="p">.</span><span class="n">grafana</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>Grafanaのサービスが起動したことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% brew services list         </span>
+<span class="n">Name</span>    <span class="s">Status</span>  <span class="s">User</span>         <span class="s">Plist</span>
+<span class="n">grafana</span> <span class="s">started</span> <span class="s">&lt;User&gt;</span> <span class="s">/opt/homebrew/opt/grafana/homebrew.mxcl.grafana.plist</span>
+</code></pre></div>
+
+<ul>
+<li>Webブラウザで<code>http://localhost:3000/</code>に接続して、<code>admin/admin</code> でログインします。  <ul>
+<li><a href="https://grafana.com/docs/grafana/latest/getting-started/getting-started/">With Grafana | Grafana Labs</a></li>
+</ul>
+</li>
+</ul>
+<h1>プラグインのインストール</h1>
+<ul>
+<li>JSONのプラグインをインストールしてみます。  <ul>
+<li><a href="https://grafana.com/grafana/plugins/simpod-json-datasource/">JSON plugin for Grafana | Grafana Labs</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% sudo grafana-cli plugins install simpod-json-datasource</span>
+<span class="n">Password</span><span class="p">:</span>
+<span class="n">installing</span> <span class="s">simpod-json-datasource</span> <span class="s">@</span> <span class="s">0.2.4</span>
+<span class="n">from</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">grafana</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">simpod</span><span class="o">-</span><span class="n">json</span><span class="o">-</span><span class="n">datasource</span><span class="o">/</span><span class="n">versions</span><span class="o">/</span><span class="mf">0.2</span><span class="p">.</span><span class="mi">4</span><span class="o">/</span><span class="n">download</span>
+<span class="n">into</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">plugins</span>
+
+✔ <span class="n">Installed</span> <span class="n">simpod</span><span class="o">-</span><span class="n">json</span><span class="o">-</span><span class="n">datasource</span> <span class="n">successfully</span> 
+
+<span class="n">Restart</span> <span class="s">grafana</span> <span class="s">after</span> <span class="s">installing</span> <span class="s">plugins</span> <span class="s">.</span> <span class="s">&lt;service</span> <span class="s">grafana-server</span> <span class="s">restart&gt;</span>
+</code></pre></div>
+
+<ul>
+<li>プラグインがインストールされていることを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% grafana-cli plugins ls</span>
+<span class="n">installed</span> <span class="s">plugins:</span>
+<span class="n">simpod</span><span class="o">-</span><span class="n">json</span><span class="o">-</span><span class="n">datasource</span> <span class="p">@</span> <span class="mf">0.2</span><span class="p">.</span><span class="mi">4</span>
+
+<span class="n">Restart</span> <span class="s">grafana</span> <span class="s">after</span> <span class="s">installing</span> <span class="s">plugins</span> <span class="s">.</span> <span class="s">&lt;service</span> <span class="s">grafana-server</span> <span class="s">restart&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code> <span class="c">% ls /usr/local/var/lib/grafana/plugins</span>
+<span class="n">simpod</span><span class="o">-</span><span class="n">json</span><span class="o">-</span><span class="n">datasource</span>
+</code></pre></div>
+
+<ul>
+<li>サービスを再起動してプラグインを有効化するのですが、デフォルトのプラグインのPATHとプラグインがインストールされているPATHが異なるので、<code>grafana.ini</code>ファイルを修正します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% vim /opt/homebrew/etc/grafana/grafana.ini</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% diff /opt/homebrew/etc/grafana/grafana.ini /opt/homebrew/etc/grafana/grafana.ini.example </span>
+24<span class="n">c24</span>
+<span class="o">&lt;</span> <span class="n">plugins</span> <span class="p">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">plugins</span>
+<span class="o">---</span>
+<span class="o">&gt;</span> <span class="p">;</span><span class="n">plugins</span> <span class="p">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">plugins</span>
+</code></pre></div>
+
+<ul>
+<li>Grafanaのサービスを再起動します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">%</span> <span class="n">brew</span> <span class="n">services</span> <span class="n">stop</span> <span class="n">grafana</span>
+<span class="n">Stopping</span> <span class="ss">`grafana`</span><span class="p">...</span> <span class="p">(</span><span class="n">might</span> <span class="n">take</span> <span class="n">a</span> <span class="k">while</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">%</span> <span class="n">brew</span> <span class="n">services</span> <span class="n">run</span> <span class="n">grafana</span>    
+<span class="o">==&gt;</span> <span class="n">Successfully</span> <span class="n">ran</span> <span class="ss">`grafana`</span> <span class="p">(</span><span class="n">label</span><span class="p">:</span> <span class="n">homebrew</span><span class="p">.</span><span class="n">mxcl</span><span class="p">.</span><span class="n">grafana</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>Grafanaにログインして、プラグインの一覧にJSONが表示されていれインストールは完了です。  </li>
+</ul>
+<h1>環境</h1>
+<div class="highlight"><pre><span></span><code><span class="c">% sw_vers</span>
+<span class="n">ProductName</span><span class="p">:</span>    <span class="n">macOS</span>
+<span class="n">ProductVersion</span><span class="p">:</span> <span class="mf">11.3</span>
+<span class="n">BuildVersion</span><span class="p">:</span>   <span class="mf">20E232</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% uname -smrv</span>
+<span class="n">Darwin</span> <span class="s">20.4.0</span> <span class="s">Darwin</span> <span class="s">Kernel</span> <span class="s">Version</span> <span class="s">20.4.0:</span> <span class="s">Fri</span> <span class="s">Mar</span>  <span class="s">5</span> <span class="s">01:14:02</span> <span class="s">PST</span> <span class="s">2021</span><span class="p">;</span> <span class="n">root</span><span class="p">:</span><span class="n">xnu</span><span class="o">-</span><span class="mf">7195.101</span><span class="p">.</span><span class="mi">1</span><span class="o">~</span><span class="mi">3</span><span class="o">/</span><span class="n">RELEASE_ARM64_T8101</span> <span class="n">arm64</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% brew --version</span>
+<span class="n">Homebrew</span> <span class="s">3.1.8</span>
+<span class="n">Homebrew</span><span class="o">/</span><span class="n">homebrew</span><span class="o">-</span><span class="n">core</span> <span class="p">(</span><span class="n">git</span> <span class="n">revision</span> <span class="n">bb253be1f4</span><span class="p">;</span> <span class="n">last</span> <span class="s">commit</span> <span class="s">2021-05-20)</span>
+<span class="n">Homebrew</span><span class="o">/</span><span class="n">homebrew</span><span class="o">-</span><span class="n">cask</span> <span class="p">(</span><span class="n">git</span> <span class="n">revision</span> 7<span class="n">ab1876ed3</span><span class="p">;</span> <span class="n">last</span> <span class="s">commit</span> <span class="s">2021-05-20)</span>
+</code></pre></div>
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    <a href="https://blackle0pard.net/tag/grafana/"># Grafana</a>
+    <a href="https://blackle0pard.net/tag/macos/"># macOS</a>
+  </span>
+</div>
+    <section class="footer">
+      © 2017 <a href="https://blackle0pard.net/">くろひょうのぶろぐ</a> &middot;
+      <a href="https://blackle0pard.net/about.html">About</a>
+    </section>
+  </div>
+</body>
+
+</html>
