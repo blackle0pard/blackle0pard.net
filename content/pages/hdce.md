@@ -1,4 +1,4 @@
-Title: Honeypot Data / Cowrie
+Title: Cowrie
 Status: hidden
 Save_as: hdce.html
 

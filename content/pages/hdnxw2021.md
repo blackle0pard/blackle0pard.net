@@ -1,4 +1,4 @@
-Title: Honeypot Data / Nginx  
+Title: Nginx  
 Status: hidden
 Save_as: hdnxw2021.html
 
