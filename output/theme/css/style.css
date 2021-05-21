@@ -146,3 +146,8 @@ h5 {
 h6 {
   font-size: 1.1rem;
 }
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
