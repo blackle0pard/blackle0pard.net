@@ -155,3 +155,8 @@ table {
 td {
   word-wrap: break-word;
 }
+
+img {
+  max-width: 75%;
+  height: auto;
+}
