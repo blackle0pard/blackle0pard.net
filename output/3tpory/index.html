@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>【自分用】ArchLinuxのインストール手順 - くろひょうのぶろぐ</title>
+  <meta name="author" content="blackle0pard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css">
+  <link rel="stylesheet" type="text/css" href="https://blackle0pard.net/theme/css/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="header">
+      <h2 class="title"><a href="https://blackle0pard.net/">くろひょうのぶろぐ</a></h2>
+    </section>
+
+<div class="article-title">【自分用】ArchLinuxのインストール手順</div>
+<div class="article-published" datetime="2021-05-15T12:45:00+09:00"><span class="mgl-10">2021-05-15 12:45</span>
+</div>
+<div class="article">
+  <p><a href="https://www.vultr.com/">Vultr</a>にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、<a href="https://wiki.archlinux.org/title/Installation_guide">Installation guide - ArchWiki</a> を参照してください。</p>
+<h1>ISOイメージの準備</h1>
+<ul>
+<li>Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  <ul>
+<li><a href="https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr">How to Upload Custom ISOs to Vultr - Vultr.com</a>  </li>
+</ul>
+</li>
+<li><a href="https://www.vultr.com/news/Introducing-The-ISO-Library/">ISO Library</a>の中にArchLinuxが用意されていますが、バージョンが古いので(2021年5月15日現在で、<code>2020.07.01.x86_64</code>)自分で用意したISOイメージを使います。  </li>
+<li>ArchLinuxのISOイメージ (日本のサーバー)  <ul>
+<li><a href="https://mirrors.cat.net/archlinux/">cat.net</a>  </li>
+<li><a href="http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/">jaist.ac.jp</a>  </li>
+<li><a href="http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/">tsukuba.wide.ad.jp</a>  </li>
+<li>最新の情報は、<a href="https://www.archlinux.jp/download/">Arch Linux JP Project - ダウンロード</a>で確認。  </li>
+</ul>
+</li>
+</ul>
+<h1>SSHログインの準備</h1>
+<ul>
+<li>準備したISOイメージで起動後、SSHでログイン出来るように設定変更します。</li>
+<li>sshdサービスを起動します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # systemctl start sshd</span>
+</code></pre></div>
+
+<ul>
+<li>rootユーザーのパスワードを設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # passwd</span>
+<span class="err">New password: &lt;Password&gt;</span>
+<span class="err">Retype new password: &lt;Password&gt;</span>
+</code></pre></div>
+
+<h1>インストール</h1>
+<ul>
+<li>SSHでログインすると、下記のように表示されます(最近は新規でインストールしていなかったので、いつから、このような表示が出るようになったのかは知りませんでしたが・・・・・)。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="n">__________________________________________________________________________</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">Arch</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">follow</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">installation</span><span class="w"> </span><span class="nl">guide</span><span class="p">:</span><span class="w">                     </span><span class="err">\</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">wiki</span><span class="p">.</span><span class="n">archlinux</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="k">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">Installation_guide</span><span class="w">                  </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                                                                          </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">wireless</span><span class="w"> </span><span class="n">network</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">iwctl</span><span class="w"> </span><span class="n">utility</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="n">mobile</span><span class="w"> </span><span class="n">broadband</span><span class="w"> </span><span class="p">(</span><span class="n">WWAN</span><span class="p">)</span><span class="w"> </span><span class="n">modems</span><span class="p">,</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mmcli</span><span class="w"> </span><span class="n">utility</span><span class="p">.</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Ethernet</span><span class="p">,</span><span class="w"> </span><span class="n">WLAN</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">WWAN</span><span class="w"> </span><span class="n">interfaces</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">DHCP</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">work</span><span class="w"> </span><span class="n">automatically</span><span class="p">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                                                                          </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="k">After</span><span class="w"> </span><span class="n">connecting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">internet</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">installation</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">accessed</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="err">\</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">convenience</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">Installation_guide</span><span class="p">.</span><span class="w">                           </span><span class="o">/</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------------------------------------------------------------------</span>
+<span class="w">        </span><span class="err">\</span><span class="w">   </span><span class="o">^</span><span class="n">__</span><span class="o">^</span><span class="w"></span>
+<span class="w">         </span><span class="err">\</span><span class="w">  </span><span class="p">(</span><span class="n">oo</span><span class="p">)</span><span class="err">\</span><span class="n">_______</span><span class="w"></span>
+<span class="w">            </span><span class="p">(</span><span class="n">__</span><span class="p">)</span><span class="err">\</span><span class="w">       </span><span class="p">)</span><span class="err">\</span><span class="o">/</span><span class="err">\</span><span class="w"></span>
+<span class="w">                </span><span class="o">||</span><span class="c1">----w |</span>
+<span class="w">                </span><span class="o">||</span><span class="w">     </span><span class="o">||</span><span class="w"></span>
+
+<span class="k">Last</span><span class="w"> </span><span class="nl">login</span><span class="p">:</span><span class="w"> </span><span class="n">Wed</span><span class="w"> </span><span class="n">Apr</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="err">:</span><span class="mi">12</span><span class="err">:</span><span class="mi">13</span><span class="w"> </span><span class="mi">2021</span><span class="w"></span>
+<span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+</code></pre></div>
+
+<ul>
+<li>キーボードのレイアウトを確認します(自分は日本語キーボードを使っているので、jpでgrepしています)。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # ls /usr/share/kbd/keymaps/**/*.map.gz | grep jp</span>
+<span class="err">/usr/share/kbd/keymaps/i386/qwerty/jp106.map.gz</span>
+</code></pre></div>
+
+<ul>
+<li>日本語キーボードのレイアウトに変更します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # loadkeys jp106</span>
+</code></pre></div>
+
+<ul>
+<li>boot modeを確認します。<a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#UEFI_variables">efivars ディレクトリ</a> がないので、BIOS modeで動いていると判断します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # ls /sys/firmware/efi/efivars</span>
+<span class="c">ls: cannot access &#39;/sys/firmware/efi/efivars&#39;: No such file or directory</span>
+</code></pre></div>
+
+<ul>
+<li>ネットワークを確認します。通常、NWインタフェースは1つのみですが、<a href="https://www.vultr.com/ja/features/advanced-networking/">Private Network</a>を追加していると、2つ以上接続されている場合があります。    </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # ip link</span>
+<span class="c">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000</span>
+<span class="c">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span class="c">2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000</span>
+<span class="c">    link/ether 7a:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff</span>
+<span class="c">    altname enp0s3</span>
+<span class="c">3: ens7: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000</span>
+<span class="c">    link/ether 76:xx:xx:xx:xx:xx brd ff:ff:ff:ff:ff:ff</span>
+<span class="c">    altname enp0s7</span>
+</code></pre></div>
+
+<ul>
+<li>システムクロックの同期状態を確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # timedatectl</span>
+<span class="err">               Local time: Wed 2021-04-10 13:11:42 UTC</span>
+<span class="err">           Universal time: Wed 2021-04-10 13:11:42 UTC</span>
+<span class="err">                 RTC time: Wed 2021-04-10 13:11:42    </span>
+<span class="err">                Time zone: UTC (UTC, +0000)           </span>
+<span class="err">System clock synchronized: no                         </span>
+<span class="err">              NTP service: inactive                   </span>
+<span class="err">          RTC in local TZ: no </span>
+</code></pre></div>
+
+<ul>
+<li>システムクロックの同期を有効化します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # timedatectl set-ntp true</span>
+</code></pre></div>
+
+<ul>
+<li>システムクロックの同期状態を確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # timedatectl             </span>
+<span class="err">               Local time: Wed 2021-04-10 13:11:12 UTC</span>
+<span class="err">           Universal time: Wed 2021-04-10 13:11:12 UTC</span>
+<span class="err">                 RTC time: Wed 2021-04-10 13:11:12    </span>
+<span class="err">                Time zone: UTC (UTC, +0000)           </span>
+<span class="err">System clock synchronized: yes                        </span>
+<span class="err">              NTP service: active                     </span>
+<span class="err">          RTC in local TZ: no  </span>
+</code></pre></div>
+
+<ul>
+<li>パーティションテーブルを一覧表示します (パーティションを作成するデバイスは<code>/dev/vda</code>であることを確認)。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">fdisk</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+
+
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">loop0</span><span class="p">:</span><span class="w"> </span><span class="mf">618.27</span><span class="w"> </span><span class="n">MiB</span><span class="p">,</span><span class="w"> </span><span class="mi">648298496</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">1266208</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>パーティションを作成します。今回は、Swap 1GB。それ以外はrootディレクトリにします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">fdisk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda</span><span class="w"> </span>
+
+<span class="n">Welcome</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">fdisk</span><span class="w"> </span><span class="p">(</span><span class="n">util</span><span class="o">-</span><span class="n">linux</span><span class="w"> </span><span class="mf">2.36.2</span><span class="p">).</span><span class="w"></span>
+<span class="n">Changes</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">remain</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="k">only</span><span class="p">,</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">decide</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="n">them</span><span class="p">.</span><span class="w"></span>
+<span class="n">Be</span><span class="w"> </span><span class="n">careful</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="n">command</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">contain</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="nc">table</span><span class="p">.</span><span class="w"></span>
+<span class="n">Created</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DOS</span><span class="w"> </span><span class="n">disklabel</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">disk</span><span class="w"> </span><span class="n">identifier</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Disklabel</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">dos</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="nl">identifier</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="k">Partition</span><span class="w"> </span><span class="n">type</span><span class="w"></span>
+<span class="w">   </span><span class="n">p</span><span class="w">   </span><span class="k">primary</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="k">primary</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">extended</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="k">free</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">e</span><span class="w">   </span><span class="n">extended</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">logical</span><span class="w"> </span><span class="n">partitions</span><span class="p">)</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Partition</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="k">First</span><span class="w"> </span><span class="n">sector</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="o">-</span><span class="mi">52428799</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">2048</span><span class="p">)</span><span class="err">:</span><span class="w"> </span>
+<span class="k">Last</span><span class="w"> </span><span class="n">sector</span><span class="p">,</span><span class="w"> </span><span class="o">+/-</span><span class="n">sectors</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="o">+/-</span><span class="k">size</span><span class="err">{</span><span class="n">K</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="err">}</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="o">-</span><span class="mi">52428799</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">52428799</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="n">G</span><span class="w"></span>
+
+<span class="n">Created</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="s1">&#39;Linux&#39;</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">GiB</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Disklabel</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">dos</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="nl">identifier</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w">     </span><span class="n">Boot</span><span class="w"> </span><span class="k">Start</span><span class="w">     </span><span class="k">End</span><span class="w"> </span><span class="n">Sectors</span><span class="w"> </span><span class="k">Size</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="n">Type</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w">        </span><span class="mi">2048</span><span class="w"> </span><span class="mi">2099199</span><span class="w"> </span><span class="mi">2097152</span><span class="w">   </span><span class="mi">1</span><span class="n">G</span><span class="w"> </span><span class="mi">83</span><span class="w"> </span><span class="n">Linux</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Disklabel</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">dos</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="nl">identifier</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w">     </span><span class="n">Boot</span><span class="w"> </span><span class="k">Start</span><span class="w">     </span><span class="k">End</span><span class="w"> </span><span class="n">Sectors</span><span class="w"> </span><span class="k">Size</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="n">Type</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w">        </span><span class="mi">2048</span><span class="w"> </span><span class="mi">2099199</span><span class="w"> </span><span class="mi">2097152</span><span class="w">   </span><span class="mi">1</span><span class="n">G</span><span class="w"> </span><span class="mi">83</span><span class="w"> </span><span class="n">Linux</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="k">Partition</span><span class="w"> </span><span class="n">type</span><span class="w"></span>
+<span class="w">   </span><span class="n">p</span><span class="w">   </span><span class="k">primary</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">primary</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">extended</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">free</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">e</span><span class="w">   </span><span class="n">extended</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">logical</span><span class="w"> </span><span class="n">partitions</span><span class="p">)</span><span class="w"></span>
+<span class="k">Select</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Partition</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="k">First</span><span class="w"> </span><span class="n">sector</span><span class="w"> </span><span class="p">(</span><span class="mi">2099200</span><span class="o">-</span><span class="mi">52428799</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">2099200</span><span class="p">)</span><span class="err">:</span><span class="w"> </span>
+<span class="k">Last</span><span class="w"> </span><span class="n">sector</span><span class="p">,</span><span class="w"> </span><span class="o">+/-</span><span class="n">sectors</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="o">+/-</span><span class="k">size</span><span class="err">{</span><span class="n">K</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="err">}</span><span class="w"> </span><span class="p">(</span><span class="mi">2099200</span><span class="o">-</span><span class="mi">52428799</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">52428799</span><span class="p">)</span><span class="err">:</span><span class="w"> </span>
+
+<span class="n">Created</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="s1">&#39;Linux&#39;</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="n">GiB</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Disklabel</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">dos</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="nl">identifier</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w">     </span><span class="n">Boot</span><span class="w">   </span><span class="k">Start</span><span class="w">      </span><span class="k">End</span><span class="w">  </span><span class="n">Sectors</span><span class="w"> </span><span class="k">Size</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="n">Type</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w">          </span><span class="mi">2048</span><span class="w">  </span><span class="mi">2099199</span><span class="w">  </span><span class="mi">2097152</span><span class="w">   </span><span class="mi">1</span><span class="n">G</span><span class="w"> </span><span class="mi">83</span><span class="w"> </span><span class="n">Linux</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda2</span><span class="w">       </span><span class="mi">2099200</span><span class="w"> </span><span class="mi">52428799</span><span class="w"> </span><span class="mi">50329600</span><span class="w">  </span><span class="mi">24</span><span class="n">G</span><span class="w"> </span><span class="mi">83</span><span class="w"> </span><span class="n">Linux</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+<span class="k">Partition</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">Hex</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="k">alias</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="ow">all</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">82</span><span class="w"></span>
+
+<span class="n">Changed</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="s1">&#39;Linux&#39;</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;Linux swap / Solaris&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nl">vda</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">GiB</span><span class="p">,</span><span class="w"> </span><span class="mi">26843545600</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="mi">52428800</span><span class="w"> </span><span class="n">sectors</span><span class="w"></span>
+<span class="nl">Units</span><span class="p">:</span><span class="w"> </span><span class="n">sectors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Sector</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">logical</span><span class="o">/</span><span class="n">physical</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="p">(</span><span class="n">minimum</span><span class="o">/</span><span class="n">optimal</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">Disklabel</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">dos</span><span class="w"></span>
+<span class="k">Disk</span><span class="w"> </span><span class="nl">identifier</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="n">xxxxxxxx3</span><span class="w"></span>
+
+<span class="n">Device</span><span class="w">     </span><span class="n">Boot</span><span class="w">   </span><span class="k">Start</span><span class="w">      </span><span class="k">End</span><span class="w">  </span><span class="n">Sectors</span><span class="w"> </span><span class="k">Size</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="n">Type</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w">          </span><span class="mi">2048</span><span class="w">  </span><span class="mi">2099199</span><span class="w">  </span><span class="mi">2097152</span><span class="w">   </span><span class="mi">1</span><span class="n">G</span><span class="w"> </span><span class="mi">82</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">swap</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Solaris</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda2</span><span class="w">       </span><span class="mi">2099200</span><span class="w"> </span><span class="mi">52428799</span><span class="w"> </span><span class="mi">50329600</span><span class="w">  </span><span class="mi">24</span><span class="n">G</span><span class="w"> </span><span class="mi">83</span><span class="w"> </span><span class="n">Linux</span><span class="w"></span>
+
+<span class="n">Command</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">w</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">altered</span><span class="p">.</span><span class="w"></span>
+<span class="n">Calling</span><span class="w"> </span><span class="n">ioctl</span><span class="p">()</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">re</span><span class="o">-</span><span class="k">read</span><span class="w"> </span><span class="k">partition</span><span class="w"> </span><span class="nc">table</span><span class="p">.</span><span class="w"></span>
+<span class="n">Syncing</span><span class="w"> </span><span class="n">disks</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>swapパーティションを作成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # mkswap /dev/vda1 </span>
+<span class="err">Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)</span>
+<span class="err">no label, UUID=11xx4996-3456-9999-ssss-2e55f9xxxxxx</span>
+</code></pre></div>
+
+<ul>
+<li>初期化します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # swapon /dev/vda1 </span>
+</code></pre></div>
+
+<ul>
+<li>Ext4でパーティションを作成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda2</span><span class="w"> </span>
+<span class="n">mke2fs</span><span class="w"> </span><span class="mf">1.46.2</span><span class="w"> </span><span class="p">(</span><span class="mi">28</span><span class="o">-</span><span class="n">Feb</span><span class="o">-</span><span class="mi">2021</span><span class="p">)</span><span class="w"></span>
+<span class="n">Discarding</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="nl">blocks</span><span class="p">:</span><span class="w"> </span><span class="n">done</span><span class="w">                            </span>
+<span class="n">Creating</span><span class="w"> </span><span class="n">filesystem</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="mi">6291200</span><span class="w"> </span><span class="mi">4</span><span class="n">k</span><span class="w"> </span><span class="n">blocks</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="mi">1572864</span><span class="w"> </span><span class="n">inodes</span><span class="w"></span>
+<span class="n">Filesystem</span><span class="w"> </span><span class="nl">UUID</span><span class="p">:</span><span class="w"> </span><span class="n">xxxx774d</span><span class="o">-</span><span class="mi">5555</span><span class="o">-</span><span class="mi">3333</span><span class="o">-</span><span class="n">xxxx</span><span class="o">-</span><span class="mi">99</span><span class="n">xxxxx00css</span><span class="w"></span>
+<span class="n">Superblock</span><span class="w"> </span><span class="n">backups</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="nl">blocks</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="mi">32768</span><span class="p">,</span><span class="w"> </span><span class="mi">98304</span><span class="p">,</span><span class="w"> </span><span class="mi">163840</span><span class="p">,</span><span class="w"> </span><span class="mi">229376</span><span class="p">,</span><span class="w"> </span><span class="mi">294912</span><span class="p">,</span><span class="w"> </span><span class="mi">819200</span><span class="p">,</span><span class="w"> </span><span class="mi">884736</span><span class="p">,</span><span class="w"> </span><span class="mi">1605632</span><span class="p">,</span><span class="w"> </span><span class="mi">2654208</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="mi">4096000</span><span class="w"></span>
+
+<span class="n">Allocating</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="nl">tables</span><span class="p">:</span><span class="w"> </span><span class="n">done</span><span class="w">                            </span>
+<span class="n">Writing</span><span class="w"> </span><span class="n">inode</span><span class="w"> </span><span class="nl">tables</span><span class="p">:</span><span class="w"> </span><span class="n">done</span><span class="w">                            </span>
+<span class="n">Creating</span><span class="w"> </span><span class="n">journal</span><span class="w"> </span><span class="p">(</span><span class="mi">32768</span><span class="w"> </span><span class="n">blocks</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">done</span><span class="w"></span>
+<span class="n">Writing</span><span class="w"> </span><span class="n">superblocks</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">filesystem</span><span class="w"> </span><span class="n">accounting</span><span class="w"> </span><span class="nl">information</span><span class="p">:</span><span class="w"> </span><span class="n">done</span><span class="w">  </span>
+</code></pre></div>
+
+<ul>
+<li>現在、マウントされているディレクトリを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # df -h</span>
+<span class="err">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span class="err">dev             457M     0  457M   0% /dev</span>
+<span class="err">run             488M  149M  339M  31% /run</span>
+<span class="err">/dev/sr0        751M  751M     0 100% /run/archiso/bootmnt</span>
+<span class="err">cowspace        256M  764K  256M   1% /run/archiso/cowspace</span>
+<span class="err">/dev/loop0      619M  619M     0 100% /run/archiso/airootfs</span>
+<span class="err">airootfs        256M  764K  256M   1% /</span>
+<span class="err">tmpfs           488M     0  488M   0% /dev/shm</span>
+<span class="err">tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup</span>
+<span class="err">tmpfs           488M     0  488M   0% /tmp</span>
+<span class="err">tmpfs           488M  2.1M  486M   1% /etc/pacman.d/gnupg</span>
+<span class="err">tmpfs            98M     0   98M   0% /run/user/0</span>
+</code></pre></div>
+
+<ul>
+<li>ISOイメージを/mnt ディレクトリにマウントします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # mount /dev/vda2 /mnt </span>
+</code></pre></div>
+
+<ul>
+<li>ISOイメージが/mnt ディレクトリにマウントされたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # df -h</span>
+<span class="err">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span class="err">dev             457M     0  457M   0% /dev</span>
+<span class="err">run             488M  149M  339M  31% /run</span>
+<span class="err">/dev/sr0        751M  751M     0 100% /run/archiso/bootmnt</span>
+<span class="err">cowspace        256M  764K  256M   1% /run/archiso/cowspace</span>
+<span class="err">/dev/loop0      619M  619M     0 100% /run/archiso/airootfs</span>
+<span class="err">airootfs        256M  764K  256M   1% /</span>
+<span class="err">tmpfs           488M     0  488M   0% /dev/shm</span>
+<span class="err">tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup</span>
+<span class="err">tmpfs           488M     0  488M   0% /tmp</span>
+<span class="err">tmpfs           488M  2.1M  486M   1% /etc/pacman.d/gnupg</span>
+<span class="err">tmpfs            98M     0   98M   0% /run/user/0</span>
+<span class="err">/dev/vda2        24G   24K   23G   1% /mnt</span>
+</code></pre></div>
+
+<ul>
+<li>pacmanのパッケージリストを修正します(既存の参照先は全て削除して、新しく追加します)。参照先は下記のサイトから確認。    <ul>
+<li><a href="https://archlinux.org/mirrorlist/">Arch Linux - Pacman Mirrorlist Generator</a>  </li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # vim /etc/pacman.d/mirrorlist </span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pacman</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">mirrorlist</span><span class="w"></span>
+<span class="err">##</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Arch</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="n">mirrorlist</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Filtered</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">mirror</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mirror</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">page</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Generated</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">14</span><span class="w"></span>
+<span class="err">##</span><span class="w"></span>
+
+<span class="err">##</span><span class="w"> </span><span class="n">Japan</span><span class="w"></span>
+<span class="n">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="p">.</span><span class="n">jaist</span><span class="p">.</span><span class="n">ac</span><span class="p">.</span><span class="n">jp</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">Linux</span><span class="o">/</span><span class="n">ArchLinux</span><span class="o">/</span><span class="err">$</span><span class="n">repo</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="err">$</span><span class="n">arch</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Japan</span><span class="w"></span>
+<span class="n">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="p">.</span><span class="n">jaist</span><span class="p">.</span><span class="n">ac</span><span class="p">.</span><span class="n">jp</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">Linux</span><span class="o">/</span><span class="n">ArchLinux</span><span class="o">/</span><span class="err">$</span><span class="n">repo</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="err">$</span><span class="n">arch</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Japan</span><span class="w"></span>
+<span class="n">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="p">.</span><span class="n">tsukuba</span><span class="p">.</span><span class="n">wide</span><span class="p">.</span><span class="n">ad</span><span class="p">.</span><span class="n">jp</span><span class="o">/</span><span class="n">Linux</span><span class="o">/</span><span class="n">archlinux</span><span class="o">/</span><span class="err">$</span><span class="n">repo</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="err">$</span><span class="n">arch</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Japan</span><span class="w"></span>
+<span class="n">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">cat</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">archlinux</span><span class="o">/</span><span class="err">$</span><span class="n">repo</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="err">$</span><span class="n">arch</span><span class="w"></span>
+<span class="err">##</span><span class="w"> </span><span class="n">Japan</span><span class="w"></span>
+<span class="n">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">cat</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">archlinux</span><span class="o">/</span><span class="err">$</span><span class="n">repo</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="err">$</span><span class="n">arch</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>必須パッケージをインストールします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # pacstrap /mnt base linux linux-firmware</span>
+</code></pre></div>
+
+<h1>システム設定</h1>
+<ul>
+<li>fstabの設定を確認します(何も設定が入っていないはず)。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">filesystems</span><span class="p">.</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">fstab</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="k">file</span><span class="w"> </span><span class="k">system</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">dir</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">type</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">dump</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pass</span><span class="o">&gt;</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>fstabを修正します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span>
+</code></pre></div>
+
+<ul>
+<li>設定が追加されたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@archiso</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span><span class="w">                </span>
+<span class="err">#</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">filesystems</span><span class="p">.</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">fstab</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="k">file</span><span class="w"> </span><span class="k">system</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">dir</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">type</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">options</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">dump</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pass</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda2</span><span class="w"></span>
+<span class="n">UUID</span><span class="o">=</span><span class="n">xxxxxx4d</span><span class="o">-</span><span class="mi">1</span><span class="n">ww3</span><span class="o">-</span><span class="mi">4</span><span class="n">aac</span><span class="o">-</span><span class="mi">91</span><span class="n">fd</span><span class="o">-</span><span class="n">b0cxxxxxxcss</span><span class="w">   </span><span class="o">/</span><span class="w">           </span><span class="n">ext4</span><span class="w">        </span><span class="n">rw</span><span class="p">,</span><span class="n">relatime</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w"></span>
+<span class="n">UUID</span><span class="o">=</span><span class="n">xxxxxx86</span><span class="o">-</span><span class="mi">7</span><span class="n">aa8</span><span class="o">-</span><span class="mi">4998</span><span class="o">-</span><span class="n">b4a8</span><span class="o">-</span><span class="mf">2e2</span><span class="n">xxxxxx5tt</span><span class="w">   </span><span class="k">none</span><span class="w">        </span><span class="n">swap</span><span class="w">        </span><span class="n">defaults</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>rootディレクトリを変更します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # arch-chroot /mnt</span>
+<span class="err">[root@archiso /]# </span>
+</code></pre></div>
+
+<ul>
+<li>タイムゾーンを日本に設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime</span>
+</code></pre></div>
+
+<ul>
+<li>タイムゾーンが日本に設定されたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# date</span>
+<span class="err">Wed Apr 10 11:12:13 JST 2021</span>
+</code></pre></div>
+
+<ul>
+<li>ハードウェア・クロックを現在のシステム・クロックに合わせます。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# hwclock --systohc</span>
+</code></pre></div>
+
+<ul>
+<li>vimをインストールします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# pacman -S vim --noconfirm</span>
+</code></pre></div>
+
+<ul>
+<li>ロケールの一覧から<code>en_US.UTF-8 UTF-8</code>をアンコメントします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# vim /etc/locale.gen</span>
+</code></pre></div>
+
+<ul>
+<li>ロケールを生成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# locale-gen </span>
+<span class="err">Generating locales...</span>
+<span class="err">  en_US.UTF-8... done</span>
+<span class="err">Generation complete.</span>
+</code></pre></div>
+
+<ul>
+<li>システム全体のロケールを設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</span>
+</code></pre></div>
+
+<ul>
+<li>/etc/locale.confファイルが作成されたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# cat /etc/locale.conf </span>
+<span class="err">LANG=en_US.UTF-8</span>
+</code></pre></div>
+
+<ul>
+<li>日本語キーボードのレイアウトに変更します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# echo jp106  &gt; /etc/vconsole.conf</span>
+</code></pre></div>
+
+<ul>
+<li>/etc/vconsole.confファイルが作成されたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# cat /etc/vconsole.conf </span>
+<span class="err">jp106</span>
+</code></pre></div>
+
+<ul>
+<li>ホスト名を設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# echo example.blackle0pard.local &gt; /etc/hostname</span>
+</code></pre></div>
+
+<ul>
+<li>/etc/hostnameファイルが作成されたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# cat /etc/hostname </span>
+<span class="err">example.blackle0pard.local</span>
+</code></pre></div>
+
+<ul>
+<li>hostsファイルを修正します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# vim /etc/hosts</span>
+</code></pre></div>
+
+<ul>
+<li>修正した内容を確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">root@archiso /</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="n">lookup</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">hostnames</span><span class="p">.</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">hosts</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="w"></span>
+
+<span class="mf">127.0.0.1</span><span class="w">       </span><span class="n">localhost</span><span class="w"></span>
+<span class="mf">127.0.0.1</span><span class="w">       </span><span class="n">example</span><span class="p">.</span><span class="n">blackle0pard</span><span class="p">.</span><span class="k">local</span><span class="w"> </span><span class="n">example</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>新しいInitramfsを作成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# mkinitcpio -P</span>
+</code></pre></div>
+
+<ul>
+<li>rootユーザーのパスワードを設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# passwd</span>
+<span class="err">New password: </span>
+<span class="err">Retype new password: </span>
+<span class="c">passwd: password updated successfully</span>
+</code></pre></div>
+
+<ul>
+<li>SSHログイン用ユーザーを作成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# useradd -m hoge</span>
+</code></pre></div>
+
+<ul>
+<li>作成したSSHログイン用ユーザーの情報を確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# id hoge</span>
+<span class="err">uid=1000(hoge) gid=1000(hoge) groups=1000(hoge) </span>
+</code></pre></div>
+
+<ul>
+<li>SSHログイン用ユーザーのパスワードを設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# passwd hoge</span>
+<span class="err">New password: </span>
+<span class="err">Retype new password: </span>
+<span class="c">passwd: password updated successfully</span>
+</code></pre></div>
+
+<ul>
+<li>systemd-networkdサービス(ネットワークの設定)の自動起動を有効化します。  </li>
+<li><a href="https://wiki.archlinux.jp/index.php/Systemd-networkd">systemd-networkd - ArchWiki</a>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# systemctl enable systemd-networkd</span>
+</code></pre></div>
+
+<ul>
+<li>systemd-resolvedサービス(名前解決)の自動起動を有効化します。  </li>
+<li><a href="https://wiki.archlinux.jp/index.php/Systemd-resolved">systemd-resolved - ArchWiki</a>  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# systemctl enable systemd-resolved</span>
+</code></pre></div>
+
+<ul>
+<li>Public NetworkのNWインタフェースに対して、IPアドレスを設定します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# vim /etc/systemd/network/ens3.network</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">root@archiso /</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">ens3</span><span class="p">.</span><span class="n">network</span><span class="w"></span>
+<span class="o">[</span><span class="n">Match</span><span class="o">]</span><span class="w"></span>
+<span class="n">Name</span><span class="o">=</span><span class="n">ens3</span><span class="w"></span>
+
+<span class="o">[</span><span class="n">Network</span><span class="o">]</span><span class="w"></span>
+<span class="n">Address</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="o">/</span><span class="n">xx</span><span class="w"></span>
+<span class="n">Gateway</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="w"></span>
+<span class="n">DNS</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="w"></span>
+<span class="n">LinkLocalAddressing</span><span class="o">=</span><span class="k">no</span><span class="w"></span>
+<span class="n">IPv6AcceptRA</span><span class="o">=</span><span class="k">no</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>Private NetworkのNWインタフェースに対して、IPアドレスを設定します。</li>
+<li>Private NetworkのMTUは1450が推奨値。  </li>
+</ul>
+<blockquote>
+<p>We recommend configuring an MTU of 1450 on your private network. Using a larger MTU will result in poor performance.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# vim /etc/systemd/network/ens7.network</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">root@archiso /</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">ens7</span><span class="p">.</span><span class="n">network</span><span class="w"></span>
+<span class="o">[</span><span class="n">Match</span><span class="o">]</span><span class="w"></span>
+<span class="n">Name</span><span class="o">=</span><span class="n">ens7</span><span class="w"></span>
+
+<span class="o">[</span><span class="n">Link</span><span class="o">]</span><span class="w"></span>
+<span class="n">MTUBytes</span><span class="o">=</span><span class="mi">1450</span><span class="w"></span>
+
+<span class="o">[</span><span class="n">Network</span><span class="o">]</span><span class="w"></span>
+<span class="n">Address</span><span class="o">=</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="p">.</span><span class="n">xxx</span><span class="o">/</span><span class="n">xx</span><span class="w"></span>
+<span class="n">LinkLocalAddressing</span><span class="o">=</span><span class="k">no</span><span class="w"></span>
+<span class="n">IPv6AcceptRA</span><span class="o">=</span><span class="k">no</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>opensshパッケージをインストールします。   </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# pacman -S openssh --noconfirm</span>
+</code></pre></div>
+
+<ul>
+<li>SSHの自動起動を有効化します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# systemctl enable sshd</span>
+</code></pre></div>
+
+<ul>
+<li>grubパッケージをインストールします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# pacman -S grub --noconfirm</span>
+</code></pre></div>
+
+<ul>
+<li>GRUBをインストールします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# grub-install --target=i386-pc /dev/vda</span>
+</code></pre></div>
+
+<ul>
+<li>GRUBの起動メニューを生成します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]#  grub-mkconfig -o /boot/grub/grub.cfg</span>
+</code></pre></div>
+
+<ul>
+<li>chroot環境から抜けます。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">[root@archiso /]# exit</span>
+<span class="err">exit</span>
+<span class="err">arch-chroot /mnt  14.56s user 5.14s system 0% cpu 40:48.42 total</span>
+<span class="err">root@archiso ~ # </span>
+</code></pre></div>
+
+<ul>
+<li>/mntディレクトリをアンマウントします。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # umount /mnt </span>
+</code></pre></div>
+
+<ul>
+<li>/mntディレクトリがアンマウントされたことを確認します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">root@archiso ~ # df -h</span>
+<span class="err">Filesystem      Size  Used Avail Use% Mounted on</span>
+<span class="err">dev             457M     0  457M   0% /dev</span>
+<span class="err">run             488M  149M  339M  31% /run</span>
+<span class="err">/dev/sr0        751M  751M     0 100% /run/archiso/bootmnt</span>
+<span class="err">cowspace        256M  792K  256M   1% /run/archiso/cowspace</span>
+<span class="err">/dev/loop0      619M  619M     0 100% /run/archiso/airootfs</span>
+<span class="err">airootfs        256M  792K  256M   1% /</span>
+<span class="err">tmpfs           488M     0  488M   0% /dev/shm</span>
+<span class="err">tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup</span>
+<span class="err">tmpfs           488M     0  488M   0% /tmp</span>
+<span class="err">tmpfs           488M  2.1M  486M   1% /etc/pacman.d/gnupg</span>
+<span class="err">tmpfs            98M     0   98M   0% /run/user/0</span>
+</code></pre></div>
+
+<ul>
+<li>ISOイメージをアンマウントして、OSを再起動します(Vultrの管理コンソールから実行)。</li>
+</ul>
+<h1>確認</h1>
+<ul>
+<li>OSの再起動後に、SSH用ログインユーザーでSSHログイン出来ることを確認します。  </li>
+</ul>
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    <a href="https://blackle0pard.net/tag/archlinux/"># ArchLinux</a>
+    <a href="https://blackle0pard.net/tag/vultr/"># Vultr</a>
+  </span>
+</div>
+    <section class="footer">
+      <a href="https://twitter.com/blackle0pard_" target="_blank">Twitter</a> &middot;
+      <a href="https://github.com/blackle0pard" target="_blank">GitHub</a> &middot;
+      <a href="https://www.linkedin.com/in/blackle0pard" target="_blank">LinkedIn</a> &middot;
+      <a href="https://blackle0pard.net/hd.html">HoneypotData</a><br>
+      © 2017 <a href="https://blackle0pard.net/">くろひょうのぶろぐ</a>
+    </section>
+  </div>
+</body>
+
+</html>
