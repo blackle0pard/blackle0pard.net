@@ -2,10 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://blackle0pard.net/g35ngh/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://blackle0pard.net/3tpory/</loc>
     <priority>0.8</priority>
   </url>
@@ -19,14 +15,6 @@
   </url>
 
 
-  <url>
-    <loc>https://blackle0pard.net/tag/macos/</loc>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://blackle0pard.net/tag/grafana/</loc>
-    <priority>1.0</priority>
-  </url>
   <url>
     <loc>https://blackle0pard.net/tag/archlinux/</loc>
     <priority>1.0</priority>
