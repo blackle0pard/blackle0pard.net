@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>yayコマンドでアップデート出来ない / There may be another Pacman instance running - くろひょうのぶろぐ</title>
+  <meta name="author" content="blackle0pard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css">
+  <link rel="stylesheet" type="text/css" href="https://blackle0pard.net/theme/css/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="header">
+      <h2 class="title"><a href="https://blackle0pard.net/">くろひょうのぶろぐ</a></h2>
+    </section>
+
+<div class="article-title">yayコマンドでアップデート出来ない / There may be another Pacman instance running</div>
+<div class="article-published" datetime="2021-09-27T22:38:00+09:00"><span class="mgl-10">2021-09-27 22:38</span>
+</div>
+<div class="article">
+  <ul>
+<li>yayコマンドでアップデートすると、下記のように待機の状態になりました。   </li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ yay -Syu --noconfirm
+ -&gt; /var/lib/pacman/db.lck is present.
+ -&gt; There may be another Pacman instance running. Waiting...
+</code></pre></div>
+
+<ul>
+<li>メッセージの通り、ロックファイルがありました。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ ls -l /var/lib/pacman/db.lck 
+---------- <span class="m">1</span> root root <span class="m">0</span> Sep <span class="m">26</span> <span class="m">19</span>:50 /var/lib/pacman/db.lck
+</code></pre></div>
+
+<ul>
+<li>(失敗するのは分かっていますが、)pacmanコマンドでもアップデートに失敗します。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ sudo pacman -Syu --noconfirm
+:: Synchronizing package databases...
+error: failed to synchronize all databases <span class="o">(</span>unable to lock database<span class="o">)</span>
+</code></pre></div>
+
+<ul>
+<li>エラーの対処方法はArchWikiに書いてある通りで、ロックファイルを削除します。    <ul>
+<li><a href="https://wiki.archlinux.org/title/pacman#%22Failed_to_init_transaction_(unable_to_lock_database)%22_error">"Failed to init transaction (unable to lock database)" error</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ sudo rm /var/lib/pacman/db.lck 
+</code></pre></div>
+
+<ul>
+<li>ファイルの削除後、無事にアップデート出来ました。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ yay -Syu --noconfirm
+:: Synchronizing package databases...
+ core                            <span class="m">137</span>.3 KiB   <span class="m">974</span> KiB/s <span class="m">00</span>:00 <span class="o">[</span><span class="c1">################################] 100%</span>
+ extra                          <span class="m">1567</span>.0 KiB  <span class="m">6</span>.96 MiB/s <span class="m">00</span>:00 <span class="o">[</span><span class="c1">################################] 100%</span>
+ community                         <span class="m">5</span>.8 MiB  <span class="m">29</span>.0 MiB/s <span class="m">00</span>:00 <span class="o">[</span><span class="c1">################################] 100%</span>
+:: Starting full system upgrade...
+resolving dependencies...
+looking <span class="k">for</span> conflicting packages...
+
+...
+
+:: Running post-transaction hooks...
+<span class="o">(</span><span class="m">1</span>/1<span class="o">)</span> Arming ConditionNeedsUpdate...
+:: Searching databases <span class="k">for</span> updates...
+:: Searching AUR <span class="k">for</span> updates...
+ there is nothing to <span class="k">do</span>
+</code></pre></div>
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    <a href="https://blackle0pard.net/tag/archlinux/"># ArchLinux</a>
+  </span>
+</div>
+    <section class="footer">
+      <a href="https://twitter.com/blackle0pard_" target="_blank">Twitter</a> &middot;
+      <a href="https://github.com/blackle0pard" target="_blank">GitHub</a><br>
+      © 2017 <a href="https://blackle0pard.net/">くろひょうのぶろぐ</a>
+    </section>
+  </div>
+</body>
+
+</html>

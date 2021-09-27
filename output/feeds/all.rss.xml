@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-05-15T12:45:00+09:00</updated><entry><title>【自分用】ArchLinuxのインストール手順</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-09-27T22:38:00+09:00</updated><entry><title>yayコマンドでアップデート出来ない / There may be another Pacman instance running</title><link href="https://blackle0pard.net/96zbo7/" rel="alternate"></link><published>2021-09-27T22:38:00+09:00</published><updated>2021-09-27T22:38:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-09-27:/96zbo7/</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;yayコマンドでアップデートすると、下記のように待機の状態になりました。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
+ -&amp;gt; /var/lib/pacman/db.lck is present.
+ -&amp;gt; There may be another Pacman instance running. Waiting...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メッセージの通り、ロックファイルがありました。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ls -l /var/lib/pacman/db.lck 
+---------- &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;0&lt;/span&gt; Sep &lt;span class="m"&gt;26&lt;/span&gt; &lt;span class="m"&gt;19&lt;/span&gt;:50 /var/lib/pacman/db.lck
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(失敗するのは分かっていますが、)pacmanコマンドでもアップデートに失敗します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo pacman -Syu --noconfirm
+:: Synchronizing package …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;yayコマンドでアップデートすると、下記のように待機の状態になりました。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
+ -&amp;gt; /var/lib/pacman/db.lck is present.
+ -&amp;gt; There may be another Pacman instance running. Waiting...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メッセージの通り、ロックファイルがありました。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ls -l /var/lib/pacman/db.lck 
+---------- &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;0&lt;/span&gt; Sep &lt;span class="m"&gt;26&lt;/span&gt; &lt;span class="m"&gt;19&lt;/span&gt;:50 /var/lib/pacman/db.lck
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(失敗するのは分かっていますが、)pacmanコマンドでもアップデートに失敗します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo pacman -Syu --noconfirm
+:: Synchronizing package databases...
+error: failed to synchronize all databases &lt;span class="o"&gt;(&lt;/span&gt;unable to lock database&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;エラーの対処方法はArchWikiに書いてある通りで、ロックファイルを削除します。    &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/pacman#%22Failed_to_init_transaction_(unable_to_lock_database)%22_error"&gt;"Failed to init transaction (unable to lock database)" error&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo rm /var/lib/pacman/db.lck 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ファイルの削除後、無事にアップデート出来ました。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
+:: Synchronizing package databases...
+ core                            &lt;span class="m"&gt;137&lt;/span&gt;.3 KiB   &lt;span class="m"&gt;974&lt;/span&gt; KiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
+ extra                          &lt;span class="m"&gt;1567&lt;/span&gt;.0 KiB  &lt;span class="m"&gt;6&lt;/span&gt;.96 MiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
+ community                         &lt;span class="m"&gt;5&lt;/span&gt;.8 MiB  &lt;span class="m"&gt;29&lt;/span&gt;.0 MiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
+:: Starting full system upgrade...
+resolving dependencies...
+looking &lt;span class="k"&gt;for&lt;/span&gt; conflicting packages...
+
+...
+
+:: Running post-transaction hooks...
+&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;/1&lt;span class="o"&gt;)&lt;/span&gt; Arming ConditionNeedsUpdate...
+:: Searching databases &lt;span class="k"&gt;for&lt;/span&gt; updates...
+:: Searching AUR &lt;span class="k"&gt;for&lt;/span&gt; updates...
+ there is nothing to &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Tech"></category><category term="ArchLinux"></category></entry><entry><title>【自分用】ArchLinuxのインストール手順</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
 &lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;
