@@ -1,75 +1,731 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-09-27T22:38:00+09:00</updated><entry><title>yayコマンドでアップデート出来ない</title><link href="https://blackle0pard.net/96zbo7/" rel="alternate"></link><published>2021-09-27T22:38:00+09:00</published><updated>2021-09-27T22:38:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-09-27:/96zbo7/</id><summary type="html">&lt;ul&gt;
-&lt;li&gt;yayコマンドでアップデートすると、下記のように待機の状態になりました。   &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
- -&amp;gt; /var/lib/pacman/db.lck is present.
- -&amp;gt; There may be another Pacman instance running. Waiting...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2021-12-11T21:36:00+09:00</updated><entry><title>【自分用】ArchLinuxのインストール手順 (2021年12月)</title><link href="https://blackle0pard.net/vx5n43/" rel="alternate"></link><published>2021-12-11T21:36:00+09:00</published><updated>2021-12-11T21:36:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-12-11:/vx5n43/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;メッセージの通り、ロックファイルがありました。  &lt;/li&gt;
+&lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr"&gt;How to Upload Custom ISOs to Vultr - Vultr.com&lt;/a&gt;  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ls -l /var/lib/pacman/db.lck 
----------- &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;0&lt;/span&gt; Sep &lt;span class="m"&gt;26&lt;/span&gt; &lt;span class="m"&gt;19&lt;/span&gt;:50 /var/lib/pacman/db.lck
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(失敗するのは分かっていますが、)pacmanコマンドでもアップデートに失敗します。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo pacman -Syu --noconfirm
-:: Synchronizing package …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;ul&gt;
-&lt;li&gt;yayコマンドでアップデートすると、下記のように待機の状態になりました。   &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
- -&amp;gt; /var/lib/pacman/db.lck is present.
- -&amp;gt; There may be another Pacman instance running. Waiting...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;メッセージの通り、ロックファイルがありました。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ls -l /var/lib/pacman/db.lck 
----------- &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;0&lt;/span&gt; Sep &lt;span class="m"&gt;26&lt;/span&gt; &lt;span class="m"&gt;19&lt;/span&gt;:50 /var/lib/pacman/db.lck
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(失敗するのは分かっていますが、)pacmanコマンドでもアップデートに失敗します。  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo pacman -Syu --noconfirm
-:: Synchronizing package databases...
-error: failed to synchronize all databases &lt;span class="o"&gt;(&lt;/span&gt;unable to lock database&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;エラーの対処方法はArchWikiに書いてある通りで、ロックファイルを削除します。    &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/pacman#%22Failed_to_init_transaction_(unable_to_lock_database)%22_error"&gt;"Failed to init transaction (unable to lock database)" error&lt;/a&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/news/Introducing-The-ISO-Library/"&gt;ISO Library&lt;/a&gt;の中にArchLinuxが用意されていますが、今回は自分で用意したISOイメージ(archlinux-2021.12.01-x86_64.iso)を使いました。  &lt;/li&gt;
+&lt;li&gt;ArchLinuxのISOイメージ (日本のサーバー)  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mirrors.cat.net/archlinux/"&gt;cat.net&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/"&gt;jaist.ac.jp&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/"&gt;tsukuba.wide.ad.jp&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;最新の情報は、&lt;a href="https://www.archlinux.jp/download/"&gt;Arch Linux JP Project - ダウンロード&lt;/a&gt;で確認。  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo rm /var/lib/pacman/db.lck 
+&lt;h1&gt;SSHログインの準備&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;準備したISOイメージで起動後、SSHでログイン出来るように設定変更します。&lt;/li&gt;
+&lt;li&gt;rootユーザーのパスワードを設定します …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/docs/requirements-for-uploading-an-os-iso-to-vultr"&gt;How to Upload Custom ISOs to Vultr - Vultr.com&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/news/Introducing-The-ISO-Library/"&gt;ISO Library&lt;/a&gt;の中にArchLinuxが用意されていますが、今回は自分で用意したISOイメージ(archlinux-2021.12.01-x86_64.iso)を使いました。  &lt;/li&gt;
+&lt;li&gt;ArchLinuxのISOイメージ (日本のサーバー)  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mirrors.cat.net/archlinux/"&gt;cat.net&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/"&gt;jaist.ac.jp&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ftp.tsukuba.wide.ad.jp/Linux/archlinux/"&gt;tsukuba.wide.ad.jp&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;最新の情報は、&lt;a href="https://www.archlinux.jp/download/"&gt;Arch Linux JP Project - ダウンロード&lt;/a&gt;で確認。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;SSHログインの準備&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;準備したISOイメージで起動後、SSHでログイン出来るように設定変更します。&lt;/li&gt;
+&lt;li&gt;rootユーザーのパスワードを設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# passwd&lt;/span&gt;
+&lt;span class="err"&gt;New password: &amp;lt;Password&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;Retype new password: &amp;lt;Password&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;インストール&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;SSHでログインすると、下記のように表示されます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% ssh root@***.***.***.***&lt;/span&gt;
+&lt;span class="n"&gt;Warning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Permanently&lt;/span&gt; &lt;span class="n"&gt;added&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;***.***.***.***&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ED25519&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt; &lt;span class="n"&gt;hosts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="o"&gt;***.***.***.***&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 
+&lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="s"&gt;install&lt;/span&gt; &lt;span class="s"&gt;Arch&lt;/span&gt; &lt;span class="s"&gt;Linux&lt;/span&gt; &lt;span class="s"&gt;follow&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;installation&lt;/span&gt; &lt;span class="s"&gt;guide:&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;wiki&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;archlinux&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Installation_guide&lt;/span&gt;
+
+&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="s"&gt;Wi-Fi,&lt;/span&gt; &lt;span class="s"&gt;authenticate&lt;/span&gt; &lt;span class="s"&gt;to&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;wireless&lt;/span&gt; &lt;span class="s"&gt;network&lt;/span&gt; &lt;span class="s"&gt;using&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;iwctl&lt;/span&gt; &lt;span class="s"&gt;utility.&lt;/span&gt;
+&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="s"&gt;mobile&lt;/span&gt; &lt;span class="s"&gt;broadband&lt;/span&gt; &lt;span class="s"&gt;(WWAN)&lt;/span&gt; &lt;span class="s"&gt;modems,&lt;/span&gt; &lt;span class="s"&gt;connect&lt;/span&gt; &lt;span class="s"&gt;with&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;mmcli&lt;/span&gt; &lt;span class="s"&gt;utility.&lt;/span&gt;
+&lt;span class="n"&gt;Ethernet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WLAN&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;WWAN&lt;/span&gt; &lt;span class="n"&gt;interfaces&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;DHCP&lt;/span&gt; &lt;span class="n"&gt;should&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt; &lt;span class="n"&gt;automatically&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;After&lt;/span&gt; &lt;span class="s"&gt;connecting&lt;/span&gt; &lt;span class="s"&gt;to&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;internet,&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;installation&lt;/span&gt; &lt;span class="s"&gt;guide&lt;/span&gt; &lt;span class="s"&gt;can&lt;/span&gt; &lt;span class="s"&gt;be&lt;/span&gt; &lt;span class="s"&gt;accessed&lt;/span&gt;
+&lt;span class="n"&gt;via&lt;/span&gt; &lt;span class="s"&gt;the&lt;/span&gt; &lt;span class="s"&gt;convenience&lt;/span&gt; &lt;span class="s"&gt;script&lt;/span&gt; &lt;span class="s"&gt;Installation_guide.&lt;/span&gt;
+
+&lt;span class="n"&gt;Last&lt;/span&gt; &lt;span class="s"&gt;login:&lt;/span&gt; &lt;span class="s"&gt;Sat&lt;/span&gt; &lt;span class="s"&gt;Dec&lt;/span&gt; &lt;span class="s"&gt;11&lt;/span&gt; &lt;span class="s"&gt;07:44:46&lt;/span&gt; &lt;span class="s"&gt;2021&lt;/span&gt;
+# 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;ファイルの削除後、無事にアップデート出来ました。  &lt;/li&gt;
+&lt;li&gt;サーバーの環境を確認します。  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ yay -Syu --noconfirm
-:: Synchronizing package databases...
- core                            &lt;span class="m"&gt;137&lt;/span&gt;.3 KiB   &lt;span class="m"&gt;974&lt;/span&gt; KiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
- extra                          &lt;span class="m"&gt;1567&lt;/span&gt;.0 KiB  &lt;span class="m"&gt;6&lt;/span&gt;.96 MiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
- community                         &lt;span class="m"&gt;5&lt;/span&gt;.8 MiB  &lt;span class="m"&gt;29&lt;/span&gt;.0 MiB/s &lt;span class="m"&gt;00&lt;/span&gt;:00 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c1"&gt;################################] 100%&lt;/span&gt;
-:: Starting full system upgrade...
-resolving dependencies...
-looking &lt;span class="k"&gt;for&lt;/span&gt; conflicting packages...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# uname -srvmo&lt;/span&gt;
+&lt;span class="err"&gt;Linux 5.15.5-arch1-1 #1 SMP PREEMPT Thu, 25 Nov 2021 22:09:33 +0000 x86_64 GNU/Linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# cat /etc/os-release &lt;/span&gt;
+&lt;span class="err"&gt;NAME=&amp;quot;Arch Linux&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;PRETTY_NAME=&amp;quot;Arch Linux&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;ID=arch&lt;/span&gt;
+&lt;span class="err"&gt;BUILD_ID=rolling&lt;/span&gt;
+&lt;span class="err"&gt;ANSI_COLOR=&amp;quot;38;2;23;147;209&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;HOME_URL=&amp;quot;https://archlinux.org/&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;DOCUMENTATION_URL=&amp;quot;https://wiki.archlinux.org/&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;SUPPORT_URL=&amp;quot;https://bbs.archlinux.org/&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;BUG_REPORT_URL=&amp;quot;https://bugs.archlinux.org/&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;LOGO=archlinux-logo&lt;/span&gt;
+&lt;span class="err"&gt;IMAGE_ID=archlinux&lt;/span&gt;
+&lt;span class="err"&gt;IMAGE_VERSION=2021.12.01&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-:: Running post-transaction hooks...
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;/1&lt;span class="o"&gt;)&lt;/span&gt; Arming ConditionNeedsUpdate...
-:: Searching databases &lt;span class="k"&gt;for&lt;/span&gt; updates...
-:: Searching AUR &lt;span class="k"&gt;for&lt;/span&gt; updates...
- there is nothing to &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Tech"></category><category term="ArchLinux"></category></entry><entry><title>【自分用】ArchLinuxのインストール手順</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;キーボードのレイアウトを確認します(自分は日本語キーボードを使っているので、jpでgrepしています)。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;ls /usr/share/kbd/keymaps/**/*.map.gz | grep jp&lt;/span&gt;
+&lt;span class="err"&gt;/usr/share/kbd/keymaps/i386/qwerty/jp106.map.gz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# localectl list-keymaps| grep jp&lt;/span&gt;
+&lt;span class="err"&gt;jp106&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;日本語キーボードのレイアウトに変更します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# loadkeys jp106&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;boot modeを確認します。&lt;a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#UEFI_variables"&gt;efivars ディレクトリ&lt;/a&gt; がないので、BIOS modeで動いていると判断します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#  ls /sys/firmware/efi/efivars&lt;/span&gt;
+&lt;span class="c"&gt;ls: cannot access &amp;#39;/sys/firmware/efi/efivars&amp;#39;: No such file or directory&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ネットワークを確認します。通常、NWインタフェースは1つのみですが、&lt;a href="https://www.vultr.com/ja/features/advanced-networking/"&gt;Private Network&lt;/a&gt;を追加していると、2つ以上接続されている場合があります。    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# ip link&lt;/span&gt;
+&lt;span class="c"&gt;1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000&lt;/span&gt;
+&lt;span class="c"&gt;    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00&lt;/span&gt;
+&lt;span class="c"&gt;2: enp1s0: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000&lt;/span&gt;
+&lt;span class="c"&gt;    link/ether **:**:**:**:**:** brd ff:ff:ff:ff:ff:ff&lt;/span&gt;
+&lt;span class="c"&gt;3: enp6s0: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1450 qdisc mq state UP mode DEFAULT group default qlen 1000&lt;/span&gt;
+&lt;span class="c"&gt;    link/ether **:**:**:**:**:** brd ff:ff:ff:ff:ff:ff&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;システムクロックの同期状態を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# timedatectl status&lt;/span&gt;
+&lt;span class="err"&gt;               Local time: Sat 2021-12-11 07:50:53 UTC&lt;/span&gt;
+&lt;span class="err"&gt;           Universal time: Sat 2021-12-11 07:50:53 UTC&lt;/span&gt;
+&lt;span class="err"&gt;                 RTC time: Sat 2021-12-11 07:50:54&lt;/span&gt;
+&lt;span class="err"&gt;                Time zone: UTC (UTC, +0000)&lt;/span&gt;
+&lt;span class="err"&gt;System clock synchronized: no&lt;/span&gt;
+&lt;span class="err"&gt;              NTP service: inactive&lt;/span&gt;
+&lt;span class="err"&gt;          RTC in local TZ: no&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;システムクロックの同期を有効化します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# timedatectl set-ntp true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;システムクロックの同期状態を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# timedatectl status&lt;/span&gt;
+&lt;span class="err"&gt;               Local time: Sat 2021-12-11 07:51:25 UTC&lt;/span&gt;
+&lt;span class="err"&gt;           Universal time: Sat 2021-12-11 07:51:25 UTC&lt;/span&gt;
+&lt;span class="err"&gt;                 RTC time: Sat 2021-12-11 07:51:25&lt;/span&gt;
+&lt;span class="err"&gt;                Time zone: UTC (UTC, +0000)&lt;/span&gt;
+&lt;span class="err"&gt;System clock synchronized: yes&lt;/span&gt;
+&lt;span class="err"&gt;              NTP service: active&lt;/span&gt;
+&lt;span class="err"&gt;          RTC in local TZ: no&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;パーティションテーブルを一覧表示します (パーティションを作成するデバイスは&lt;code&gt;/dev/vda&lt;/code&gt;であることを確認)。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;fdisk&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+
+
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loop0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;701&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt; &lt;span class="n"&gt;MiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;735399936&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1436328&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;パーティションを作成します。今回は、Swap 1GB。それ以外はrootディレクトリにします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;fdisk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt; 
+
+&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fdisk&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;util&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;span class="n"&gt;Changes&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;remain&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="k"&gt;only&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;until&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;decide&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="k"&gt;write&lt;/span&gt; &lt;span class="n"&gt;them&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Be&lt;/span&gt; &lt;span class="n"&gt;careful&lt;/span&gt; &lt;span class="k"&gt;before&lt;/span&gt; &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;write&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Device&lt;/span&gt; &lt;span class="n"&gt;does&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="n"&gt;contain&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;recognized&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Created&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;DOS&lt;/span&gt; &lt;span class="n"&gt;disklabel&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Disklabel&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;dos&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;
+   &lt;span class="n"&gt;p&lt;/span&gt;   &lt;span class="k"&gt;primary&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;primary&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;extended&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="k"&gt;free&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="n"&gt;e&lt;/span&gt;   &lt;span class="n"&gt;extended&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;container&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;logical&lt;/span&gt; &lt;span class="n"&gt;partitions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;Select&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;First&lt;/span&gt; &lt;span class="n"&gt;sector&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; 
+&lt;span class="k"&gt;Last&lt;/span&gt; &lt;span class="n"&gt;sector&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;+/-&lt;/span&gt;&lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="o"&gt;+/-&lt;/span&gt;&lt;span class="k"&gt;size&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt;
+
+&lt;span class="n"&gt;Created&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Linux&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Disklabel&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;dos&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;
+
+&lt;span class="n"&gt;Device&lt;/span&gt;     &lt;span class="n"&gt;Boot&lt;/span&gt; &lt;span class="k"&gt;Start&lt;/span&gt;     &lt;span class="k"&gt;End&lt;/span&gt; &lt;span class="n"&gt;Sectors&lt;/span&gt; &lt;span class="k"&gt;Size&lt;/span&gt; &lt;span class="n"&gt;Id&lt;/span&gt; &lt;span class="k"&gt;Type&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;        &lt;span class="mi"&gt;2048&lt;/span&gt; &lt;span class="mi"&gt;2099199&lt;/span&gt; &lt;span class="mi"&gt;2097152&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;83&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Selected&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="k"&gt;alias&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="k"&gt;all&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Linux&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Linux swap / Solaris&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Disklabel&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;dos&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;
+
+&lt;span class="n"&gt;Device&lt;/span&gt;     &lt;span class="n"&gt;Boot&lt;/span&gt; &lt;span class="k"&gt;Start&lt;/span&gt;     &lt;span class="k"&gt;End&lt;/span&gt; &lt;span class="n"&gt;Sectors&lt;/span&gt; &lt;span class="k"&gt;Size&lt;/span&gt; &lt;span class="n"&gt;Id&lt;/span&gt; &lt;span class="k"&gt;Type&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;        &lt;span class="mi"&gt;2048&lt;/span&gt; &lt;span class="mi"&gt;2099199&lt;/span&gt; &lt;span class="mi"&gt;2097152&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Solaris&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;
+   &lt;span class="n"&gt;p&lt;/span&gt;   &lt;span class="k"&gt;primary&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;primary&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;extended&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;free&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+   &lt;span class="n"&gt;e&lt;/span&gt;   &lt;span class="n"&gt;extended&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;container&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;logical&lt;/span&gt; &lt;span class="n"&gt;partitions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;Select&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="nb"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;First&lt;/span&gt; &lt;span class="n"&gt;sector&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2099200&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;2099200&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; 
+&lt;span class="k"&gt;Last&lt;/span&gt; &lt;span class="n"&gt;sector&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;+/-&lt;/span&gt;&lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="o"&gt;+/-&lt;/span&gt;&lt;span class="k"&gt;size&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2099200&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="mi"&gt;52428799&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; 
+
+&lt;span class="n"&gt;Created&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Linux&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Disklabel&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;dos&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;
+
+&lt;span class="n"&gt;Device&lt;/span&gt;     &lt;span class="n"&gt;Boot&lt;/span&gt;   &lt;span class="k"&gt;Start&lt;/span&gt;      &lt;span class="k"&gt;End&lt;/span&gt;  &lt;span class="n"&gt;Sectors&lt;/span&gt; &lt;span class="k"&gt;Size&lt;/span&gt; &lt;span class="n"&gt;Id&lt;/span&gt; &lt;span class="k"&gt;Type&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;          &lt;span class="mi"&gt;2048&lt;/span&gt;  &lt;span class="mi"&gt;2099199&lt;/span&gt;  &lt;span class="mi"&gt;2097152&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Solaris&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;       &lt;span class="mi"&gt;2099200&lt;/span&gt; &lt;span class="mi"&gt;52428799&lt;/span&gt; &lt;span class="mi"&gt;50329600&lt;/span&gt;  &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;83&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;altered&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Calling&lt;/span&gt; &lt;span class="n"&gt;ioctl&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;read&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Syncing&lt;/span&gt; &lt;span class="n"&gt;disks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;パーティションテーブルを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;fdisk&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;        
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="n"&gt;GiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;26843545600&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52428800&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Disklabel&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;dos&lt;/span&gt;
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;identifier&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;x0b9a45d3&lt;/span&gt;
+
+&lt;span class="n"&gt;Device&lt;/span&gt;     &lt;span class="n"&gt;Boot&lt;/span&gt;   &lt;span class="k"&gt;Start&lt;/span&gt;      &lt;span class="k"&gt;End&lt;/span&gt;  &lt;span class="n"&gt;Sectors&lt;/span&gt; &lt;span class="k"&gt;Size&lt;/span&gt; &lt;span class="n"&gt;Id&lt;/span&gt; &lt;span class="k"&gt;Type&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;          &lt;span class="mi"&gt;2048&lt;/span&gt;  &lt;span class="mi"&gt;2099199&lt;/span&gt;  &lt;span class="mi"&gt;2097152&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;Solaris&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;       &lt;span class="mi"&gt;2099200&lt;/span&gt; &lt;span class="mi"&gt;52428799&lt;/span&gt; &lt;span class="mi"&gt;50329600&lt;/span&gt;  &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="k"&gt;G&lt;/span&gt; &lt;span class="mi"&gt;83&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt;
+
+
+&lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loop0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;701&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt; &lt;span class="n"&gt;MiB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;735399936&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1436328&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt;
+&lt;span class="n"&gt;Units&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sectors&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;Sector&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logical&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;physical&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="k"&gt;size&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;minimum&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;optimal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メモリの状態を確認します(この時点で、swapはない)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# free -h &lt;/span&gt;
+&lt;span class="err"&gt;               total        used        free      shared  buff/cache   available&lt;/span&gt;
+&lt;span class="c"&gt;Mem:           970Mi       122Mi       286Mi       174Mi       560Mi       534Mi&lt;/span&gt;
+&lt;span class="c"&gt;Swap:             0B          0B          0B&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;swapパーティションを作成します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# mkswap /dev/vda1 &lt;/span&gt;
+&lt;span class="err"&gt;Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)&lt;/span&gt;
+&lt;span class="err"&gt;no label, UUID=4ce8ea7b-5c2a-4df6-85d8-8b7b597acf1a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;初期化します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# swapon /dev/vda1 &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;swapパーティションが作成されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# free -h&lt;/span&gt;
+&lt;span class="err"&gt;               total        used        free      shared  buff/cache   available&lt;/span&gt;
+&lt;span class="c"&gt;Mem:           970Mi       122Mi       286Mi       174Mi       561Mi       535Mi&lt;/span&gt;
+&lt;span class="c"&gt;Swap:          1.0Gi          0B       1.0Gi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ext4でパーティションを作成します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;mkfs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ext4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;
+&lt;span class="n"&gt;mke2fs&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;46&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Aug&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Discarding&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;                            
+&lt;span class="n"&gt;Creating&lt;/span&gt; &lt;span class="n"&gt;filesystem&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="mi"&gt;6291200&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;1572864&lt;/span&gt; &lt;span class="n"&gt;inodes&lt;/span&gt;
+&lt;span class="n"&gt;Filesystem&lt;/span&gt; &lt;span class="n"&gt;UUID&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;d01cd335&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;604&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;fe3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a27f&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e97666d5b666&lt;/span&gt;
+&lt;span class="n"&gt;Superblock&lt;/span&gt; &lt;span class="n"&gt;backups&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 
+    &lt;span class="mi"&gt;32768&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;98304&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;163840&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;229376&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;294912&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;819200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;884736&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1605632&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2654208&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="mi"&gt;4096000&lt;/span&gt;
+
+&lt;span class="n"&gt;Allocating&lt;/span&gt; &lt;span class="k"&gt;group&lt;/span&gt; &lt;span class="n"&gt;tables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;                            
+&lt;span class="n"&gt;Writing&lt;/span&gt; &lt;span class="n"&gt;inode&lt;/span&gt; &lt;span class="n"&gt;tables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;                            
+&lt;span class="n"&gt;Creating&lt;/span&gt; &lt;span class="n"&gt;journal&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;32768&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;
+&lt;span class="n"&gt;Writing&lt;/span&gt; &lt;span class="n"&gt;superblocks&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;filesystem&lt;/span&gt; &lt;span class="n"&gt;accounting&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;現在、マウントされているディレクトリを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# df -h&lt;/span&gt;
+&lt;span class="err"&gt;Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
+&lt;span class="err"&gt;dev             452M     0  452M   0% /dev&lt;/span&gt;
+&lt;span class="err"&gt;run             486M  166M  320M  35% /run&lt;/span&gt;
+&lt;span class="err"&gt;/dev/sr0        851M  851M     0 100% /run/archiso/bootmnt&lt;/span&gt;
+&lt;span class="err"&gt;cowspace        256M  4.1M  252M   2% /run/archiso/cowspace&lt;/span&gt;
+&lt;span class="err"&gt;/dev/loop0      702M  702M     0 100% /run/archiso/airootfs&lt;/span&gt;
+&lt;span class="err"&gt;airootfs        256M  4.1M  252M   2% /&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /dev/shm&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /tmp&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M  2.2M  484M   1% /etc/pacman.d/gnupg&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs            98M     0   98M   0% /run/user/0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISOイメージを/mnt ディレクトリにマウントします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# mount /dev/vda2 /mnt &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISOイメージが/mnt ディレクトリにマウントされたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# df -h                &lt;/span&gt;
+&lt;span class="err"&gt;Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
+&lt;span class="err"&gt;dev             452M     0  452M   0% /dev&lt;/span&gt;
+&lt;span class="err"&gt;run             486M  166M  320M  35% /run&lt;/span&gt;
+&lt;span class="err"&gt;/dev/sr0        851M  851M     0 100% /run/archiso/bootmnt&lt;/span&gt;
+&lt;span class="err"&gt;cowspace        256M  4.1M  252M   2% /run/archiso/cowspace&lt;/span&gt;
+&lt;span class="err"&gt;/dev/loop0      702M  702M     0 100% /run/archiso/airootfs&lt;/span&gt;
+&lt;span class="err"&gt;airootfs        256M  4.1M  252M   2% /&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /dev/shm&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /tmp&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M  2.2M  484M   1% /etc/pacman.d/gnupg&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs            98M     0   98M   0% /run/user/0&lt;/span&gt;
+&lt;span class="err"&gt;/dev/vda2        24G   24K   23G   1% /mnt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pacmanのパッケージリストを修正します(既存の参照先は全て削除して、新しく追加します)。参照先は下記のサイトから確認。    &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://archlinux.org/mirrorlist/"&gt;Arch Linux - Pacman Mirrorlist Generator&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archlinux.org/mirrorlist/?country=JP&amp;amp;protocol=http&amp;amp;protocol=https&amp;amp;ip_version=4&amp;amp;use_mirror_status=on"&gt;https://archlinux.org/mirrorlist/?country=JP&amp;amp;protocol=http&amp;amp;protocol=https&amp;amp;ip_version=4&amp;amp;use_mirror_status=on&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# vim /etc/pacman.d/mirrorlist &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pacman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mirrorlist&lt;/span&gt; 
+&lt;span class="o"&gt;#&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Arch&lt;/span&gt; &lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="n"&gt;mirrorlist&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Filtered&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt; &lt;span class="n"&gt;mirror&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;mirror&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;Generated&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Japan&lt;/span&gt;
+&lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;mirrors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;archlinux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;arch&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Japan&lt;/span&gt;
+&lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tsukuba&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wide&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ad&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;archlinux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;arch&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Japan&lt;/span&gt;
+&lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jaist&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ac&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ArchLinux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;arch&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Japan&lt;/span&gt;
+&lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;mirrors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;archlinux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;arch&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Japan&lt;/span&gt;
+&lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jaist&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ac&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ArchLinux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;arch&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;必須パッケージをインストールします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# pacstrap /mnt base linux-lts linux-firmware&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;システム設定&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;fstabの設定を確認します(何も設定が入っていないはず)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mnt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fstab&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;Static&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;filesystems&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;fstab&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;details&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="k"&gt;system&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;options&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;pass&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;fstabを修正します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;設定が追加されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mnt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fstab&lt;/span&gt;                
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;Static&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="n"&gt;about&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;filesystems&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;fstab&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;details&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="k"&gt;system&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;options&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;pass&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda2&lt;/span&gt;
+&lt;span class="n"&gt;UUID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;d01cd335&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;604&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;fe3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a27f&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e97666d5b666&lt;/span&gt;   &lt;span class="o"&gt;/&lt;/span&gt;           &lt;span class="n"&gt;ext4&lt;/span&gt;        &lt;span class="n"&gt;rw&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;relatime&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vda1&lt;/span&gt;
+&lt;span class="n"&gt;UUID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;ce8ea7b&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;c2a&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;df6&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="n"&gt;d8&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="n"&gt;b7b597acf1a&lt;/span&gt;   &lt;span class="k"&gt;none&lt;/span&gt;        &lt;span class="n"&gt;swap&lt;/span&gt;        &lt;span class="k"&gt;defaults&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;rootディレクトリを変更します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# arch-chroot /mnt&lt;/span&gt;
+&lt;span class="err"&gt;# &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;現在の時刻表記を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# date&lt;/span&gt;
+&lt;span class="err"&gt;Sat Dec 11 07:59:54 UTC 2021&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タイムゾーンを日本に設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タイムゾーンが日本に設定されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# date&lt;/span&gt;
+&lt;span class="err"&gt;Sat Dec 11 18:13:20 JST 2021&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;adjtimeファイルがないことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# ls /etc/adjtime&lt;/span&gt;
+&lt;span class="c"&gt;ls: cannot access &amp;#39;/etc/adjtime&amp;#39;: No such file or directory&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ハードウェア・クロックを現在のシステム・クロックに合わせます。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# hwclock --systohc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;adjtimeファイルが作成されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# ls /etc/adjtime&lt;/span&gt;
+&lt;span class="err"&gt;/etc/adjtime&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# cat /etc/adjtime&lt;/span&gt;
+&lt;span class="err"&gt;0.000000 1639209682 0.000000&lt;/span&gt;
+&lt;span class="err"&gt;1639209682&lt;/span&gt;
+&lt;span class="err"&gt;UTC&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;vimをインストールします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# pacman -S vim --noconfirm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ロケールの一覧から&lt;code&gt;en_US.UTF-8 UTF-8&lt;/code&gt;をアンコメントします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# vim /etc/locale.gen&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ロケールを生成します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# locale-gen &lt;/span&gt;
+&lt;span class="err"&gt;Generating locales...&lt;/span&gt;
+&lt;span class="err"&gt;  en_US.UTF-8... done&lt;/span&gt;
+&lt;span class="err"&gt;Generation complete.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;システム全体のロケールを設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.conf&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/etc/locale.confファイルが作成されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# cat /etc/locale.conf &lt;/span&gt;
+&lt;span class="err"&gt;LANG=en_US.UTF-8&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;日本語キーボードのレイアウトに変更します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# echo jp106  &amp;gt; /etc/vconsole.conf&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/etc/vconsole.confファイルが作成されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# cat /etc/vconsole.conf &lt;/span&gt;
+&lt;span class="err"&gt;jp106&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ホスト名を設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# echo hoge.blackle0pard.local &amp;gt; /etc/hostname&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/etc/hostnameファイルが作成されたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# cat /etc/hostname &lt;/span&gt;
+&lt;span class="err"&gt;hoge.blackle0pard.local&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;hostsファイルを修正します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# vim /etc/hosts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;修正した内容を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;Static&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;lookup&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;hostnames&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;hosts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;details&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;       &lt;span class="n"&gt;localhost&lt;/span&gt;
+&lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;       &lt;span class="n"&gt;hoge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blackle0pard&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt; &lt;span class="n"&gt;hoge&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;rootユーザーのパスワードを設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# passwd&lt;/span&gt;
+&lt;span class="err"&gt;New password: &lt;/span&gt;
+&lt;span class="err"&gt;Retype new password: &lt;/span&gt;
+&lt;span class="c"&gt;passwd: password updated successfully&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SSHログイン用ユーザーを作成します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# useradd -m hoge&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作成したSSHログイン用ユーザーの情報を確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# id hoge&lt;/span&gt;
+&lt;span class="err"&gt;uid=1000(hoge) gid=1000(hoge) groups=1000(hoge)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SSHログイン用ユーザーのパスワードを設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# passwd hoge&lt;/span&gt;
+&lt;span class="err"&gt;New password: &lt;/span&gt;
+&lt;span class="err"&gt;Retype new password: &lt;/span&gt;
+&lt;span class="c"&gt;passwd: password updated successfully&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;systemd-networkdサービス(ネットワークの設定)の自動起動を有効化します。  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.jp/index.php/Systemd-networkd"&gt;systemd-networkd - ArchWiki&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# systemctl enable systemd-networkd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;systemd-resolvedサービス(名前解決)の自動起動を有効化します。  &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.jp/index.php/Systemd-resolved"&gt;systemd-resolved - ArchWiki&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# systemctl enable systemd-resolved&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Public NetworkのNWインタフェースに対して、IPアドレスを設定します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# vim /etc/systemd/network/enp1s0.network&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;enp1s0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Match&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;enp1s0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Network&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Address&lt;/span&gt;&lt;span class="o"&gt;=***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***/&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Gateway&lt;/span&gt;&lt;span class="o"&gt;=***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;DNS&lt;/span&gt;&lt;span class="o"&gt;=***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;LinkLocalAddressing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;IPv6AcceptRA&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Private NetworkのNWインタフェースに対して、IPアドレスを設定します。&lt;/li&gt;
+&lt;li&gt;Private NetworkのMTUは1450が推奨値。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We recommend configuring an MTU of 1450 on your private network. Using a larger MTU will result in poor performance.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# vim /etc/systemd/network/enp6s0.network&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;enp6s0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Match&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;enp6s0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Link&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;MTUBytes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1450&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Network&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Address&lt;/span&gt;&lt;span class="o"&gt;=***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;***/&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;LinkLocalAddressing&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;IPv6AcceptRA&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;opensshパッケージをインストールします。   &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# pacman -S openssh --noconfirm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SSHの自動起動を有効化します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# systemctl enable sshd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;grubパッケージをインストールします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# pacman -S grub --noconfirm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GRUBをインストールします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# grub-install --target=i386-pc /dev/vda&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GRUBの起動メニューを生成します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# grub-mkconfig -o /boot/grub/grub.cfg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;chroot環境から抜けます。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# exit&lt;/span&gt;
+&lt;span class="err"&gt;exit&lt;/span&gt;
+&lt;span class="err"&gt;arch-chroot /mnt  5.09s user 1.74s system 0% cpu 28:19.37 total&lt;/span&gt;
+&lt;span class="err"&gt;# &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/mntディレクトリをアンマウントします。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# umount /mnt &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;/mntディレクトリがアンマウントされたことを確認します。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# df -h&lt;/span&gt;
+&lt;span class="err"&gt;Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
+&lt;span class="err"&gt;dev             452M     0  452M   0% /dev&lt;/span&gt;
+&lt;span class="err"&gt;run             486M  166M  320M  35% /run&lt;/span&gt;
+&lt;span class="err"&gt;/dev/sr0        851M  851M     0 100% /run/archiso/bootmnt&lt;/span&gt;
+&lt;span class="err"&gt;cowspace        256M  4.1M  252M   2% /run/archiso/cowspace&lt;/span&gt;
+&lt;span class="err"&gt;/dev/loop0      702M  702M     0 100% /run/archiso/airootfs&lt;/span&gt;
+&lt;span class="err"&gt;airootfs        256M  4.1M  252M   2% /&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /dev/shm&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M     0  486M   0% /tmp&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs           486M  2.2M  484M   1% /etc/pacman.d/gnupg&lt;/span&gt;
+&lt;span class="err"&gt;tmpfs            98M     0   98M   0% /run/user/0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISOイメージをアンマウントして、OSを再起動します(Vultrの管理コンソールから実行)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;確認&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;OSの再起動後に、SSH用ログインユーザーでSSHログイン出来ることを確認します。  &lt;/li&gt;
+&lt;li&gt;インストール後の環境確認&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# uname -srvmo&lt;/span&gt;
+&lt;span class="err"&gt;Linux 5.10.84-1-lts #1 SMP Wed, 08 Dec 2021 10:17:01 +0000 x86_64 GNU/Linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Tech"></category><category term="ArchLinux"></category><category term="Vultr"></category></entry><entry><title>【自分用】ArchLinuxのインストール手順 (2021年5月)</title><link href="https://blackle0pard.net/3tpory/" rel="alternate"></link><published>2021-05-15T12:45:00+09:00</published><updated>2021-05-15T12:45:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2021-05-15:/3tpory/</id><summary type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
 &lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;
