@@ -18,7 +18,7 @@
 &lt;h1&gt;SSHログインの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;準備したISOイメージで起動後、SSHでログイン出来るように設定変更します。&lt;/li&gt;
-&lt;li&gt;rootユーザーのパスワードを設定します …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/docs/vultr-web-console-faq/#Frequently_Asked_Questions"&gt;Vultr …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.vultr.com/"&gt;Vultr&lt;/a&gt;にArchLinuxをインストールするための、自分用メモ。正しいインストール手順は、&lt;a href="https://wiki.archlinux.org/title/Installation_guide"&gt;Installation guide - ArchWiki&lt;/a&gt; を参照してください。&lt;/p&gt;
 &lt;h1&gt;ISOイメージの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Vultrでは自分で用意したISOイメージを使ってOSをインストールすることができます。  &lt;ul&gt;
@@ -37,6 +37,8 @@
 &lt;h1&gt;SSHログインの準備&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;準備したISOイメージで起動後、SSHでログイン出来るように設定変更します。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vultr.com/docs/vultr-web-console-faq/#Frequently_Asked_Questions"&gt;Vultr Web Console FAQ - Vultr.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;VultrのWebコンソールはUSキーボードのみの対応で、他の言語のキーボードへ設定変更不可なので注意する。&lt;/li&gt;
 &lt;li&gt;rootユーザーのパスワードを設定します。  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# passwd&lt;/span&gt;
