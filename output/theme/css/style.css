@@ -120,7 +120,6 @@ pre>code{
 
 .nav-item {
   display: inline-block;
-  /*  *display: inline;*/
 }
 
 h1 {
@@ -159,4 +158,8 @@ td {
 img {
   max-width: 85%;
   height: auto;
+}
+
+blockquote, dl, figure, form, ol, p, pre, table, ul {
+    margin-bottom: 1.0rem;
 }
