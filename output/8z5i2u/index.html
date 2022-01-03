@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>エラーメッセージ「tput: unknown terminal "xterm-kitty"」が出力された場合の対応手順 - くろひょうのぶろぐ</title>
+  <meta name="author" content="blackle0pard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css">
+  <link rel="stylesheet" type="text/css" href="https://blackle0pard.net/theme/css/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="header">
+      <h2 class="title"><a href="https://blackle0pard.net/">くろひょうのぶろぐ</a></h2>
+    </section>
+
+<div class="article-title">エラーメッセージ「tput: unknown terminal "xterm-kitty"」が出力された場合の対応手順</div>
+<div class="article-published" datetime="2022-01-03T15:57:00+09:00"><span class="mgl-10">2022-01-03 15:57</span>
+</div>
+<div class="article">
+  <h1>概要</h1>
+<ul>
+<li>ターミナルエミュレータ「<a href="https://sw.kovidgoyal.net/kitty/">kitty</a>」を使ってリモートサーバー ( kittyは未インストール )にログインすると、「tput: unknown terminal "xterm-kitty"」というメッセージが表示される。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err"># su - &lt;user&gt;                             </span>
+<span class="c">tput: unknown terminal &quot;xterm-kitty&quot;</span>
+<span class="err">$</span>
+</code></pre></div>
+
+<ul>
+<li><a href="https://archlinux.org/packages/community/x86_64/kitty-terminfo/">kitty-terminfo</a>をインストールすると解決する。  </li>
+</ul>
+<h1>対応手順</h1>
+<p>概要に記載した内容が全てなので、以降は蛇足です。<br>
+kittyのマニュアルには、参照先のコマンド「<code>kitty +kitten ssh 〜</code>」 を実行すると自動的にterminfoのファイルがコピーされると書いていましたが、自分の環境では状況に変化はありませんでした(ファイルがコピーされたけど動作しなかったのか、そもそもファイルのコピーが出来ていないのか、などの原因調査までは未実施)。  </p>
+<ul>
+<li><a href="https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer">Frequently Asked Questions - kitty</a>  <ul>
+<li>I get errors about the terminal being unknown or opening the terminal failing when SSHing into a different computer?</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>This happens because the kitty terminfo files are not available on the server. You can ssh in using the following command which will automatically copy the terminfo files to the server:</p>
+<blockquote>
+<p>kitty +kitten ssh myserver</p>
+</blockquote>
+</blockquote>
+<ul>
+<li><a href="https://wiki.archlinux.jp/index.php/Kitty#SSH_.E3.81.AE.E3.82.BF.E3.83.BC.E3.83.9F.E3.83.8A.E3.83.AB.E3.81.AE.E5.95.8F.E9.A1.8C">kitty - ArchWiki</a>  <ul>
+<li>SSH のターミナルの問題</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>kitty を使用して、terminfo を持たないリモートに ssh 接続すると、さまざまな問題が発生する可能性があります。解決策は通常 terminfo にコピーすることです。kitty には、まさにこれを自動化するための ssh の kitten があります。</p>
+<blockquote>
+<p>kitty +kitten ssh user@host</p>
+</blockquote>
+</blockquote>
+<p>terminfoのファイルをどうやって修正すれば良いのか分かりませんでしたが、適当に調べているとパッケージが見つかりました。</p>
+<ul>
+<li><a href="https://archlinux.org/packages/community/x86_64/kitty-terminfo/">Arch Linux - kitty-terminfo 0.23.1-2 (x86_64)</a></li>
+</ul>
+<blockquote>
+<p>Description:  Terminfo for kitty, an OpenGL-based terminal emulator</p>
+</blockquote>
+<p>下記のコマンドを実行して、リモートサーバーにパッケージをインストールするとメッセージは出力されなくなりました。  </p>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">kitty</span><span class="o">-</span><span class="n">terminfo</span> <span class="c1">--noconfirm</span>
+<span class="n">resolving</span> <span class="n">dependencies</span><span class="p">...</span>
+<span class="n">looking</span> <span class="k">for</span> <span class="n">conflicting</span> <span class="n">packages</span><span class="p">...</span>
+
+<span class="n">Packages</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">kitty</span><span class="o">-</span><span class="n">terminfo</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">23</span><span class="p">.</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+
+<span class="n">Total</span> <span class="n">Download</span> <span class="k">Size</span><span class="p">:</span>   <span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">MiB</span>
+<span class="n">Total</span> <span class="n">Installed</span> <span class="k">Size</span><span class="p">:</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">MiB</span>
+
+<span class="p">::</span> <span class="n">Proceed</span> <span class="k">with</span> <span class="n">installation</span><span class="o">?</span> <span class="p">[</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> 
+<span class="p">::</span> <span class="n">Retrieving</span> <span class="n">packages</span><span class="p">...</span>
+ <span class="n">kitty</span><span class="o">-</span><span class="n">terminfo</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">23</span><span class="p">.</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">x86_64</span>              <span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="n">KiB</span>  <span class="mi">79</span><span class="p">.</span><span class="mi">5</span> <span class="n">KiB</span><span class="o">/</span><span class="n">s</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">checking</span> <span class="n">keys</span> <span class="k">in</span> <span class="n">keyring</span>                                         <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">checking</span> <span class="n">package</span> <span class="n">integrity</span>                                       <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">loading</span> <span class="n">package</span> <span class="n">files</span>                                            <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">checking</span> <span class="k">for</span> <span class="n">file</span> <span class="n">conflicts</span>                                      <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">checking</span> <span class="n">available</span> <span class="n">disk</span> <span class="k">space</span>                                    <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">::</span> <span class="n">Processing</span> <span class="n">package</span> <span class="n">changes</span><span class="p">...</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">installing</span> <span class="n">kitty</span><span class="o">-</span><span class="n">terminfo</span>                                        <span class="p">[</span><span class="o">#######################################</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+<span class="p">::</span> <span class="n">Running</span> <span class="n">post</span><span class="o">-</span><span class="n">transaction</span> <span class="n">hooks</span><span class="p">...</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">Arming</span> <span class="n">ConditionNeedsUpdate</span><span class="p">...</span>
+</code></pre></div>
+
+<h1>環境</h1>
+<ul>
+<li>リモートサーバー  <ul>
+<li>Arch Linux</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err"># uname -srvmo</span>
+<span class="err">Linux 5.10.88-2-lts #1 SMP Wed, 22 Dec 2021 19:16:31 +0000 x86_64 GNU/Linux</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err"># cat /etc/os-release </span>
+<span class="err">NAME=&quot;Arch Linux&quot;</span>
+<span class="err">PRETTY_NAME=&quot;Arch Linux&quot;</span>
+<span class="err">ID=arch</span>
+<span class="err">BUILD_ID=rolling</span>
+<span class="err">ANSI_COLOR=&quot;38;2;23;147;209&quot;</span>
+<span class="err">HOME_URL=&quot;https://archlinux.org/&quot;</span>
+<span class="err">DOCUMENTATION_URL=&quot;https://wiki.archlinux.org/&quot;</span>
+<span class="err">SUPPORT_URL=&quot;https://bbs.archlinux.org/&quot;</span>
+<span class="err">BUG_REPORT_URL=&quot;https://bugs.archlinux.org/&quot;</span>
+<span class="err">LOGO=archlinux-logo</span>
+</code></pre></div>
+
+<ul>
+<li>クライアント  <ul>
+<li>macOS</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% uname -mprsv</span>
+<span class="n">Darwin</span> <span class="s">21.2.0</span> <span class="s">Darwin</span> <span class="s">Kernel</span> <span class="s">Version</span> <span class="s">21.2.0:</span> <span class="s">Sun</span> <span class="s">Nov</span> <span class="s">28</span> <span class="s">20:29:10</span> <span class="s">PST</span> <span class="s">2021</span><span class="p">;</span> <span class="n">root</span><span class="p">:</span><span class="n">xnu</span><span class="o">-</span><span class="mf">8019.61</span><span class="p">.</span><span class="mi">5</span><span class="o">~</span><span class="mi">1</span><span class="o">/</span><span class="n">RELEASE_ARM64_T8101</span> <span class="n">arm64</span> <span class="n">arm</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% sw_vers</span>
+<span class="n">ProductName</span><span class="p">:</span>    <span class="n">macOS</span>
+<span class="n">ProductVersion</span><span class="p">:</span> <span class="mf">12.1</span>
+<span class="n">BuildVersion</span><span class="p">:</span>   21<span class="n">C52</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% kitty -v</span>
+<span class="n">kitty</span> <span class="s">0.23.1</span> <span class="s">created</span> <span class="s">by</span> <span class="s">Kovid</span> <span class="s">Goyal</span>
+</code></pre></div>
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    <a href="https://blackle0pard.net/tag/archlinux/"># ArchLinux</a>
+    <a href="https://blackle0pard.net/tag/kitty/"># kitty</a>
+  </span>
+</div>
+    <section class="footer">
+      <a href="https://twitter.com/blackle0pard_" target="_blank">Twitter</a> &middot;
+      <a href="https://github.com/blackle0pard" target="_blank">GitHub</a> &middot;
+      <a href="https://www.linkedin.com/in/blackle0pard/" target="_blank">LinkedIn</a><br>
+      © 2017 <a href="https://blackle0pard.net/">くろひょうのぶろぐ</a>
+    </section>
+  </div>
+</body>
+
+</html>
