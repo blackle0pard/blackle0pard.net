@@ -22,6 +22,18 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://blackle0pard.net/pages/arch-linux.html</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://blackle0pard.net/pages/knowledge-amazon-web-services.html</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://blackle0pard.net/pages/knowledge-base.html</loc>
+    <priority>1.0</priority>
+  </url>
 
   <url>
     <loc>https://blackle0pard.net/tag/archlinux/</loc>
