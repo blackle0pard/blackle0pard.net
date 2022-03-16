@@ -1,5 +1,5 @@
 Title: Knowledge Base
 Save_as: kb.html
 
-- [Amazon Web Services](/aws)  
-- [Arch Linux](/archlinux)  
+- [Amazon Web Services](/aws.html)  
+- [Arch Linux](/archlinux.html)  
