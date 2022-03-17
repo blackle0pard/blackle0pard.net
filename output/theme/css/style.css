@@ -163,3 +163,7 @@ img {
 blockquote, dl, figure, form, ol, p, pre, table, ul {
     margin-bottom: 1.0rem;
 }
+
+li {
+  line-height: 1.0;
+}
