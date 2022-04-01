@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <title>macOSにAWS CLIをインストールする - くろひょうのぶろぐ</title>
+  <meta name="author" content="blackle0pard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css">
+  <link rel="stylesheet" type="text/css" href="https://blackle0pard.net/theme/css/style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="header">
+      <h2 class="title"><a href="https://blackle0pard.net/">くろひょうのぶろぐ</a></h2>
+    </section>
+
+<div class="article-title">macOSにAWS CLIをインストールする</div>
+<div class="article-published" datetime="2022-04-01T15:57:00+09:00"><span class="mgl-10">2022-04-01 15:57</span>
+</div>
+<div class="article">
+  <h1>概要</h1>
+<ul>
+<li>macOSに<a href="https://docs.aws.amazon.com/cli/index.html">AWS CLI</a>をインストールして、基本的な設定をする。</li>
+</ul>
+<h1>手順</h1>
+<ul>
+<li>HomebrewでAWS CLIをインストールする。<ul>
+<li><a href="https://formulae.brew.sh/formula/awscli">awscli — Homebrew Formulae</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the latest version of the AWS CLI - AWS Command Line Interface</a>  </li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% brew install awscli</span>
+</code></pre></div>
+
+<ul>
+<li>AWS CLIのバージョンを確認する。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% aws --version</span>
+<span class="n">aws</span><span class="o">-</span><span class="n">cli</span><span class="o">/</span><span class="mf">2.5</span><span class="p">.</span><span class="mi">1</span> <span class="n">Python</span><span class="o">/</span><span class="mf">3.9</span><span class="p">.</span><span class="mi">12</span> <span class="n">Darwin</span><span class="o">/</span><span class="mf">21.4</span><span class="p">.</span><span class="mi">0</span> <span class="n">source</span><span class="o">/</span><span class="n">arm64</span> <span class="n">prompt</span><span class="o">/</span><span class="n">off</span>
+</code></pre></div>
+
+<ul>
+<li>「blackle0pard」という名前のプロファイルを作成する。  <ul>
+<li>Access Keyは実際に使っている値ではありません(ブログ掲載用に適当な値に変更しています)。</li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html">Quick setup - AWS Command Line Interface</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html">Named profiles for the AWS CLI - AWS Command Line Interface</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="w"> </span><span class="n">aws</span><span class="w"> </span><span class="n">configure</span><span class="w"> </span><span class="c1">--profile blackle0pard     </span>
+<span class="n">AWS</span><span class="w"> </span><span class="n">Access</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">PDRASKRNPVFQKFZJ4FCE</span><span class="w"></span>
+<span class="n">AWS</span><span class="w"> </span><span class="n">Secret</span><span class="w"> </span><span class="n">Access</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">fal2uVOv29zYq5FoKuvqUZqx</span><span class="o">+</span><span class="n">brRs</span><span class="o">+</span><span class="n">lXKICwZ5Jk</span><span class="w"></span>
+<span class="k">Default</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">3</span><span class="w"></span>
+<span class="k">Default</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">json</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>設定データの一覧を表示する。  <ul>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">Configuration and credential file settings - AWS Command Line Interface</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/reference/configure/list.html">list — AWS CLI 1.22.86 Command Reference</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% aws configure list --profile blackle0pard</span>
+      <span class="n">Name</span>                    <span class="s">Value</span>             <span class="s">Type</span>    <span class="s">Location</span>
+      <span class="o">----</span>                    <span class="o">-----</span>             <span class="o">----</span>    <span class="o">--------</span>
+   <span class="n">profile</span>             <span class="s">blackle0pard</span>           <span class="s">manual</span>    <span class="s">--profile</span>
+<span class="n">access_key</span>     <span class="s">****************4FCE</span> <span class="s">shared-credentials-file</span>    
+<span class="n">secret_key</span>     <span class="s">****************Z5Jk</span> <span class="s">shared-credentials-file</span>    
+    <span class="n">region</span>           <span class="s">ap-northeast-3</span>      <span class="s">config-file</span>    <span class="s">~/.aws/config</span>
+</code></pre></div>
+
+<ul>
+<li>CLI設定ファイルの内容を確認する。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">%</span> <span class="n">cat</span> <span class="o">~/</span><span class="p">.</span><span class="n">aws</span><span class="o">/</span><span class="n">config</span> 
+<span class="p">[</span><span class="n">profile</span> <span class="n">blackle0pard</span><span class="p">]</span>
+<span class="n">region</span> <span class="o">=</span> <span class="n">ap</span><span class="o">-</span><span class="n">northeast</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">json</span>
+</code></pre></div>
+
+<ul>
+<li>CLI認証情報ファイルの内容を確認する。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">aws</span><span class="o">/</span><span class="n">credentials</span><span class="w"> </span>
+<span class="o">[</span><span class="n">blackle0pard</span><span class="o">]</span><span class="w"></span>
+<span class="n">aws_access_key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PDRASKRNPVFQKFZJ4FCE</span><span class="w"></span>
+<span class="n">aws_secret_access_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fal2uVOv29zYq5FoKuvqUZqx</span><span class="o">+</span><span class="n">brRs</span><span class="o">+</span><span class="n">lXKICwZ5Jk</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li>(動作確認のために、)IAMユーザーの一覧を表示する。  <ul>
+<li>結果の値は実際に使っている値ではありません(ブログ掲載用に適当な値に変更しています)。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% aws iam list-users --profile blackle0pard</span>
+<span class="p">{</span>
+    <span class="s">&quot;Users&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s">&quot;Path&quot;</span><span class="p">:</span> <span class="s">&quot;/&quot;</span><span class="p">,</span>
+            <span class="s">&quot;UserName&quot;</span><span class="p">:</span> <span class="s">&quot;hoge&quot;</span><span class="p">,</span>
+            <span class="s">&quot;UserId&quot;</span><span class="p">:</span> <span class="s">&quot;WQDAF7I7UMPQXP30SI18E&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Arn&quot;</span><span class="p">:</span> <span class="s">&quot;arn:aws:iam::438948287776:user/hoge&quot;</span><span class="p">,</span>
+            <span class="s">&quot;CreateDate&quot;</span><span class="p">:</span> <span class="s">&quot;2017-03-07T13:31:10+00:00&quot;</span><span class="p">,</span>
+            <span class="s">&quot;PasswordLastUsed&quot;</span><span class="p">:</span> <span class="s">&quot;2022-03-31T11:46:47+00:00&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>AWS CLIのコマンド補完が出来るように設定を追加する。<ul>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html">Command completion - AWS Command Line Interface</a></li>
+</ul>
+</li>
+<li>AWSコンプリータのPATHを確認する。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% which aws_completer</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">aws_completer</span>
+</code></pre></div>
+
+<ul>
+<li>使用しているシェルを確認する。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% echo $SHELL</span>
+<span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zsh</span>
+</code></pre></div>
+
+<ul>
+<li>.zshrcファイルにPATHを追加する(下記を追記する)。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% vi ~/.zshrc </span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">export PATH=&quot;/opt/homebrew/bin/:$PATH&quot;</span>
+</code></pre></div>
+
+<ul>
+<li>設定内容を反映させる。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% source ~/.zshrc </span>
+</code></pre></div>
+
+<ul>
+<li>コマンド補完を有効にする(下記を追記する)。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% vi ~/.zshrc </span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">autoload bashcompinit &amp;&amp; bashcompinit</span>
+<span class="err">autoload -Uz compinit &amp;&amp; compinit</span>
+<span class="err">complete -C &#39;/opt/homebrew/bin/aws_completer&#39; aws</span>
+</code></pre></div>
+
+<ul>
+<li>設定内容を反映させる。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% source ~/.zshrc </span>
+</code></pre></div>
+
+<ul>
+<li>コマンド補完できることを確認する。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% aws s&lt;TAB&gt;</span>
+<span class="n">s3</span>                              <span class="s">schemas</span>                         <span class="s">sesv2</span>                           <span class="s">ssm-incidents</span>
+<span class="n">s3api</span>                           <span class="s">sdb</span>                             <span class="s">shield</span>                          <span class="s">sso</span>
+<span class="n">s3control</span>                       <span class="s">secretsmanager</span>                  <span class="s">signer</span>                          <span class="s">sso-admin</span>
+<span class="n">s3outposts</span>                      <span class="s">securityhub</span>                     <span class="s">sms</span>                             <span class="s">sso-oidc</span>
+<span class="n">sagemaker</span>                       <span class="s">serverlessrepo</span>                  <span class="s">snow-device-management</span>          <span class="s">stepfunctions</span>
+<span class="n">sagemaker</span><span class="o">-</span><span class="n">a2i</span><span class="o">-</span><span class="n">runtime</span>           <span class="n">service</span><span class="o">-</span><span class="n">quotas</span>                  <span class="n">snowball</span>                        <span class="n">storagegateway</span>
+<span class="n">sagemaker</span><span class="o">-</span><span class="n">edge</span>                  <span class="n">servicecatalog</span>                  <span class="n">sns</span>                             <span class="n">sts</span>
+<span class="n">sagemaker</span><span class="o">-</span><span class="n">featurestore</span><span class="o">-</span><span class="n">runtime</span>  <span class="n">servicecatalog</span><span class="o">-</span><span class="n">appregistry</span>      <span class="n">sqs</span>                             <span class="n">support</span>
+<span class="n">sagemaker</span><span class="o">-</span><span class="n">runtime</span>               <span class="n">servicediscovery</span>                <span class="n">ssm</span>                             <span class="n">swf</span>
+<span class="n">savingsplans</span>                    <span class="s">ses</span>                             <span class="s">ssm-contacts</span>                    <span class="s">synthetics</span>
+</code></pre></div>
+
+<h1>環境</h1>
+<div class="highlight"><pre><span></span><code><span class="c">% uname -mprsv</span>
+<span class="n">Darwin</span> <span class="s">21.4.0</span> <span class="s">Darwin</span> <span class="s">Kernel</span> <span class="s">Version</span> <span class="s">21.4.0:</span> <span class="s">Fri</span> <span class="s">Mar</span> <span class="s">18</span> <span class="s">00:47:26</span> <span class="s">PDT</span> <span class="s">2022</span><span class="p">;</span> <span class="n">root</span><span class="p">:</span><span class="n">xnu</span><span class="o">-</span><span class="mf">8020.101</span><span class="p">.</span><span class="mi">4</span><span class="o">~</span><span class="mi">15</span><span class="o">/</span><span class="n">RELEASE_ARM64_T8101</span> <span class="n">arm64</span> <span class="n">arm</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% sw_vers</span>
+<span class="n">ProductName</span><span class="p">:</span>    <span class="n">macOS</span>
+<span class="n">ProductVersion</span><span class="p">:</span> <span class="mf">12.3</span><span class="p">.</span><span class="mi">1</span>
+<span class="n">BuildVersion</span><span class="p">:</span>   <span class="mf">21E258</span>
+</code></pre></div>
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    <a href="https://blackle0pard.net/tag/aws/"># AWS</a>
+    <a href="https://blackle0pard.net/tag/macos/"># macOS</a>
+  </span>
+</div>
+    <section class="footer">
+      <a href="https://twitter.com/blackle0pard_" target="_blank">Twitter</a> &middot;
+      <a href="https://github.com/blackle0pard" target="_blank">GitHub</a> &middot;
+      <a href="https://blackle0pard.net/kb.html">kb</a><br>
+      © 2017 <a href="https://blackle0pard.net/">くろひょうのぶろぐ</a>
+    </section>
+  </div>
+</body>
+
+</html>

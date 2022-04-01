@@ -1,5 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2022-01-03T15:57:00+09:00</updated><entry><title>エラーメッセージ「tput: unknown terminal "xterm-kitty"」が出力された場合の対応手順</title><link href="https://blackle0pard.net/8z5i2u/" rel="alternate"></link><published>2022-01-03T15:57:00+09:00</published><updated>2022-01-03T15:57:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2022-01-03:/8z5i2u/</id><summary type="html">&lt;h1&gt;概要&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2022-04-01T15:57:00+09:00</updated><entry><title>macOSにAWS CLIをインストールする</title><link href="https://blackle0pard.net/o29dwr/" rel="alternate"></link><published>2022-04-01T15:57:00+09:00</published><updated>2022-04-01T15:57:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2022-04-01:/o29dwr/</id><summary type="html">&lt;h1&gt;概要&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;macOSに&lt;a href="https://docs.aws.amazon.com/cli/index.html"&gt;AWS CLI&lt;/a&gt;をインストールして、基本的な設定をする。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;手順&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;HomebrewでAWS CLIをインストールする。&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://formulae.brew.sh/formula/awscli"&gt;awscli — Homebrew Formulae&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html"&gt;Installing or updating the latest version of the AWS CLI - AWS Command Line Interface&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew install awscli&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AWS CLIのバージョンを確認する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% aws --version&lt;/span&gt;
+&lt;span class="n"&gt;aws&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;3.9&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;Darwin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;21.4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;arm64&lt;/span&gt; &lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;off …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;概要&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;macOSに&lt;a href="https://docs.aws.amazon.com/cli/index.html"&gt;AWS CLI&lt;/a&gt;をインストールして、基本的な設定をする。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;手順&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;HomebrewでAWS CLIをインストールする。&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://formulae.brew.sh/formula/awscli"&gt;awscli — Homebrew Formulae&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html"&gt;Installing or updating the latest version of the AWS CLI - AWS Command Line Interface&lt;/a&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% brew install awscli&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AWS CLIのバージョンを確認する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% aws --version&lt;/span&gt;
+&lt;span class="n"&gt;aws&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;3.9&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;Darwin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;21.4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;arm64&lt;/span&gt; &lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;off&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;「blackle0pard」という名前のプロファイルを作成する。  &lt;ul&gt;
+&lt;li&gt;Access Keyは実際に使っている値ではありません(ブログ掲載用に適当な値に変更しています)。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html"&gt;Quick setup - AWS Command Line Interface&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html"&gt;Named profiles for the AWS CLI - AWS Command Line Interface&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;aws&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--profile blackle0pard     &lt;/span&gt;
+&lt;span class="n"&gt;AWS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Access&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PDRASKRNPVFQKFZJ4FCE&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;AWS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Secret&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Access&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fal2uVOv29zYq5FoKuvqUZqx&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;brRs&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;lXKICwZ5Jk&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;Default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ap&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;northeast&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;Default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;output&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;設定データの一覧を表示する。  &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html"&gt;Configuration and credential file settings - AWS Command Line Interface&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/reference/configure/list.html"&gt;list — AWS CLI 1.22.86 Command Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% aws configure list --profile blackle0pard&lt;/span&gt;
+      &lt;span class="n"&gt;Name&lt;/span&gt;                    &lt;span class="s"&gt;Value&lt;/span&gt;             &lt;span class="s"&gt;Type&lt;/span&gt;    &lt;span class="s"&gt;Location&lt;/span&gt;
+      &lt;span class="o"&gt;----&lt;/span&gt;                    &lt;span class="o"&gt;-----&lt;/span&gt;             &lt;span class="o"&gt;----&lt;/span&gt;    &lt;span class="o"&gt;--------&lt;/span&gt;
+   &lt;span class="n"&gt;profile&lt;/span&gt;             &lt;span class="s"&gt;blackle0pard&lt;/span&gt;           &lt;span class="s"&gt;manual&lt;/span&gt;    &lt;span class="s"&gt;--profile&lt;/span&gt;
+&lt;span class="n"&gt;access_key&lt;/span&gt;     &lt;span class="s"&gt;****************4FCE&lt;/span&gt; &lt;span class="s"&gt;shared-credentials-file&lt;/span&gt;    
+&lt;span class="n"&gt;secret_key&lt;/span&gt;     &lt;span class="s"&gt;****************Z5Jk&lt;/span&gt; &lt;span class="s"&gt;shared-credentials-file&lt;/span&gt;    
+    &lt;span class="n"&gt;region&lt;/span&gt;           &lt;span class="s"&gt;ap-northeast-3&lt;/span&gt;      &lt;span class="s"&gt;config-file&lt;/span&gt;    &lt;span class="s"&gt;~/.aws/config&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CLI設定ファイルの内容を確認する。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;aws&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; 
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;profile&lt;/span&gt; &lt;span class="n"&gt;blackle0pard&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ap&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;northeast&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CLI認証情報ファイルの内容を確認する。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;aws&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;blackle0pard&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;aws_access_key_id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PDRASKRNPVFQKFZJ4FCE&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;aws_secret_access_key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fal2uVOv29zYq5FoKuvqUZqx&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;brRs&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;lXKICwZ5Jk&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(動作確認のために、)IAMユーザーの一覧を表示する。  &lt;ul&gt;
+&lt;li&gt;結果の値は実際に使っている値ではありません(ブログ掲載用に適当な値に変更しています)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% aws iam list-users --profile blackle0pard&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;Users&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;Path&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;UserName&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;hoge&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;UserId&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;WQDAF7I7UMPQXP30SI18E&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;Arn&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;arn:aws:iam::438948287776:user/hoge&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;CreateDate&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2017-03-07T13:31:10+00:00&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;PasswordLastUsed&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2022-03-31T11:46:47+00:00&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AWS CLIのコマンド補完が出来るように設定を追加する。&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html"&gt;Command completion - AWS Command Line Interface&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AWSコンプリータのPATHを確認する。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% which aws_completer&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;homebrew&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;aws_completer&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用しているシェルを確認する。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% echo $SHELL&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;zsh&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.zshrcファイルにPATHを追加する(下記を追記する)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% vi ~/.zshrc &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;export PATH=&amp;quot;/opt/homebrew/bin/:$PATH&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;設定内容を反映させる。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% source ~/.zshrc &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コマンド補完を有効にする(下記を追記する)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% vi ~/.zshrc &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;autoload bashcompinit &amp;amp;&amp;amp; bashcompinit&lt;/span&gt;
+&lt;span class="err"&gt;autoload -Uz compinit &amp;amp;&amp;amp; compinit&lt;/span&gt;
+&lt;span class="err"&gt;complete -C &amp;#39;/opt/homebrew/bin/aws_completer&amp;#39; aws&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;設定内容を反映させる。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% source ~/.zshrc &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コマンド補完できることを確認する。  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% aws s&amp;lt;TAB&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;s3&lt;/span&gt;                              &lt;span class="s"&gt;schemas&lt;/span&gt;                         &lt;span class="s"&gt;sesv2&lt;/span&gt;                           &lt;span class="s"&gt;ssm-incidents&lt;/span&gt;
+&lt;span class="n"&gt;s3api&lt;/span&gt;                           &lt;span class="s"&gt;sdb&lt;/span&gt;                             &lt;span class="s"&gt;shield&lt;/span&gt;                          &lt;span class="s"&gt;sso&lt;/span&gt;
+&lt;span class="n"&gt;s3control&lt;/span&gt;                       &lt;span class="s"&gt;secretsmanager&lt;/span&gt;                  &lt;span class="s"&gt;signer&lt;/span&gt;                          &lt;span class="s"&gt;sso-admin&lt;/span&gt;
+&lt;span class="n"&gt;s3outposts&lt;/span&gt;                      &lt;span class="s"&gt;securityhub&lt;/span&gt;                     &lt;span class="s"&gt;sms&lt;/span&gt;                             &lt;span class="s"&gt;sso-oidc&lt;/span&gt;
+&lt;span class="n"&gt;sagemaker&lt;/span&gt;                       &lt;span class="s"&gt;serverlessrepo&lt;/span&gt;                  &lt;span class="s"&gt;snow-device-management&lt;/span&gt;          &lt;span class="s"&gt;stepfunctions&lt;/span&gt;
+&lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a2i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;           &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;quotas&lt;/span&gt;                  &lt;span class="n"&gt;snowball&lt;/span&gt;                        &lt;span class="n"&gt;storagegateway&lt;/span&gt;
+&lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;edge&lt;/span&gt;                  &lt;span class="n"&gt;servicecatalog&lt;/span&gt;                  &lt;span class="n"&gt;sns&lt;/span&gt;                             &lt;span class="n"&gt;sts&lt;/span&gt;
+&lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;featurestore&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;  &lt;span class="n"&gt;servicecatalog&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;appregistry&lt;/span&gt;      &lt;span class="n"&gt;sqs&lt;/span&gt;                             &lt;span class="n"&gt;support&lt;/span&gt;
+&lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;               &lt;span class="n"&gt;servicediscovery&lt;/span&gt;                &lt;span class="n"&gt;ssm&lt;/span&gt;                             &lt;span class="n"&gt;swf&lt;/span&gt;
+&lt;span class="n"&gt;savingsplans&lt;/span&gt;                    &lt;span class="s"&gt;ses&lt;/span&gt;                             &lt;span class="s"&gt;ssm-contacts&lt;/span&gt;                    &lt;span class="s"&gt;synthetics&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;環境&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% uname -mprsv&lt;/span&gt;
+&lt;span class="n"&gt;Darwin&lt;/span&gt; &lt;span class="s"&gt;21.4.0&lt;/span&gt; &lt;span class="s"&gt;Darwin&lt;/span&gt; &lt;span class="s"&gt;Kernel&lt;/span&gt; &lt;span class="s"&gt;Version&lt;/span&gt; &lt;span class="s"&gt;21.4.0:&lt;/span&gt; &lt;span class="s"&gt;Fri&lt;/span&gt; &lt;span class="s"&gt;Mar&lt;/span&gt; &lt;span class="s"&gt;18&lt;/span&gt; &lt;span class="s"&gt;00:47:26&lt;/span&gt; &lt;span class="s"&gt;PDT&lt;/span&gt; &lt;span class="s"&gt;2022&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xnu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;8020.101&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RELEASE_ARM64_T8101&lt;/span&gt; &lt;span class="n"&gt;arm64&lt;/span&gt; &lt;span class="n"&gt;arm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% sw_vers&lt;/span&gt;
+&lt;span class="n"&gt;ProductName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;    &lt;span class="n"&gt;macOS&lt;/span&gt;
+&lt;span class="n"&gt;ProductVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;12.3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;BuildVersion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;   &lt;span class="mf"&gt;21E258&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Tech"></category><category term="AWS"></category><category term="macOS"></category></entry><entry><title>エラーメッセージ「tput: unknown terminal "xterm-kitty"」が出力された場合の対応手順</title><link href="https://blackle0pard.net/8z5i2u/" rel="alternate"></link><published>2022-01-03T15:57:00+09:00</published><updated>2022-01-03T15:57:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2022-01-03:/8z5i2u/</id><summary type="html">&lt;h1&gt;概要&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;ターミナルエミュレータ「&lt;a href="https://sw.kovidgoyal.net/kitty/"&gt;kitty&lt;/a&gt;」を使ってリモートサーバー ( kittyは未インストール )にログインすると、「tput: unknown terminal "xterm-kitty"」というメッセージが表示される。  &lt;/li&gt;
 &lt;/ul&gt;
