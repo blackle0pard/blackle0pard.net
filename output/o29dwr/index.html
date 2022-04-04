@@ -20,7 +20,7 @@
 
 <div class="article-title">macOSにAWS CLIをインストールする</div>
 <div class="article-published" datetime="2022-04-01T20:36:00+09:00"><span class="mgl-10">2022-04-01 20:36</span>
-  <span class="mgl-10">( edited 2022-04-01 20:40 )</span>
+  <span class="mgl-10">( edited 2022-04-04 22:53 )</span>
 </div>
 <div class="article">
   <h1>概要</h1>
@@ -179,6 +179,16 @@
 <span class="n">sagemaker</span><span class="o">-</span><span class="n">featurestore</span><span class="o">-</span><span class="n">runtime</span>  <span class="n">servicecatalog</span><span class="o">-</span><span class="n">appregistry</span>      <span class="n">sqs</span>                             <span class="n">support</span>
 <span class="n">sagemaker</span><span class="o">-</span><span class="n">runtime</span>               <span class="n">servicediscovery</span>                <span class="n">ssm</span>                             <span class="n">swf</span>
 <span class="n">savingsplans</span>                    <span class="s">ses</span>                             <span class="s">ssm-contacts</span>                    <span class="s">synthetics</span>
+</code></pre></div>
+
+<hr>
+<ul>
+<li>設定データを削除する場合は、CLI設定ファイルとCLI認証情報ファイルを削除する。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c">% rm -f ~/.aws/config </span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c">% rm -f ~/.aws/credentials</span>
 </code></pre></div>
 
 <h1>環境</h1>

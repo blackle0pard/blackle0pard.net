@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2022-04-01T20:40:00+09:00</updated><entry><title>macOSにAWS CLIをインストールする</title><link href="https://blackle0pard.net/o29dwr/" rel="alternate"></link><published>2022-04-01T20:36:00+09:00</published><updated>2022-04-01T20:40:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2022-04-01:/o29dwr/</id><summary type="html">&lt;h1&gt;概要&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>くろひょうのぶろぐ</title><link href="https://blackle0pard.net/" rel="alternate"></link><link href="https://blackle0pard.net/feeds/all.rss.xml" rel="self"></link><id>https://blackle0pard.net/</id><updated>2022-04-04T22:53:00+09:00</updated><entry><title>macOSにAWS CLIをインストールする</title><link href="https://blackle0pard.net/o29dwr/" rel="alternate"></link><published>2022-04-01T20:36:00+09:00</published><updated>2022-04-04T22:53:00+09:00</updated><author><name>blackle0pard</name></author><id>tag:blackle0pard.net,2022-04-01:/o29dwr/</id><summary type="html">&lt;h1&gt;概要&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;macOSに&lt;a href="https://docs.aws.amazon.com/cli/index.html"&gt;AWS CLI&lt;/a&gt;をインストールして、基本的な設定をする。&lt;/li&gt;
 &lt;/ul&gt;
@@ -174,6 +174,16 @@
 &lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;featurestore&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;  &lt;span class="n"&gt;servicecatalog&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;appregistry&lt;/span&gt;      &lt;span class="n"&gt;sqs&lt;/span&gt;                             &lt;span class="n"&gt;support&lt;/span&gt;
 &lt;span class="n"&gt;sagemaker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;               &lt;span class="n"&gt;servicediscovery&lt;/span&gt;                &lt;span class="n"&gt;ssm&lt;/span&gt;                             &lt;span class="n"&gt;swf&lt;/span&gt;
 &lt;span class="n"&gt;savingsplans&lt;/span&gt;                    &lt;span class="s"&gt;ses&lt;/span&gt;                             &lt;span class="s"&gt;ssm-contacts&lt;/span&gt;                    &lt;span class="s"&gt;synthetics&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;設定データを削除する場合は、CLI設定ファイルとCLI認証情報ファイルを削除する。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% rm -f ~/.aws/config &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;% rm -f ~/.aws/credentials&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h1&gt;環境&lt;/h1&gt;
